@@ -1,9 +1,16 @@
 import React, { Fragment } from 'react';
+import { Card } from 'react-bootstrap';
 
-const Product = () => {
+const Product = ({ id, img, title, price }) => {
     return (
         <Fragment>
-            <h3>-----Product</h3>
+            <Card style={{ height: '100%' }}>
+                <Card.Img variant='top' src={img} />
+                <Card.Body>
+                    <Card.Title>{title}</Card.Title>
+                    <Card.Text>U$ {price / 100}</Card.Text>
+                </Card.Body>
+            </Card>
         </Fragment>
     );
 };

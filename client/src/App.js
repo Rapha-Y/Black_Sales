@@ -1,4 +1,6 @@
 import React, { Fragment } from 'react';
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 import Home from './components/Home';
 import Login from './components/Login';
 import Register from './components/Register';
