@@ -13,7 +13,8 @@ CREATE TABLE product (
   product_price INTEGER NOT NULL,
   product_date DATE NOT NULL,
   product_category VARCHAR(255) NOT NULL,
-  user_id UUID REFERENCES users(user_id)
+  user_id UUID REFERENCES users(user_id),
+  product_image VARCHAR(255) NOT NULL
 );
 
 CREATE TABLE cart (
