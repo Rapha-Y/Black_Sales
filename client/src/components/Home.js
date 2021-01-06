@@ -5,13 +5,14 @@ import ProductList from './ProductList';
 
 const Home = () => {
     const [searchText, setSearchText] = useState('');
+    const [category, setCategory] = useState('All');
 
     return (
         <Fragment>
             <h1>Home</h1>
             <Header />
-            <FilterMenu setSearchText={setSearchText} />
-            <ProductList searchText={searchText} />
+            <FilterMenu setSearchText={setSearchText} setCategory={setCategory} />
+            <ProductList searchText={searchText} category={category} />
         </Fragment>
     );
 };

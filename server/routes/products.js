@@ -4,7 +4,7 @@ const pool = require('../db');
 router.get('/', async (req, res) => {
     try {
         const products = await pool.query(
-            'SELECT product_id, product_image, product_name, product_price FROM product'
+            'SELECT product_id, product_image, product_name, product_price, product_category FROM product'
         );
 
         res.json(products.rows);
