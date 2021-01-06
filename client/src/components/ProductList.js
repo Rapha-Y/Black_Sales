@@ -2,10 +2,10 @@ import React, { Fragment, useState, useEffect } from 'react';
 import { Container, Col, Row } from 'react-bootstrap';
 import Product from './Product';
 
-const ProductList = () => {
+const ProductList = ({ searchText }) => {
     const [products, setProducts] = useState([]);
 
-    async function getProducts() {
+    async function getProducts(text) {
         try {
             const response = await fetch(
                 'http://localhost:5000/products'
@@ -13,19 +13,22 @@ const ProductList = () => {
 
             const parseRes = await response.json();
 
-            setProducts(parseRes);
+            const textFilteredList = parseRes.filter(product =>
+                product.product_name.includes(text)
+            );
+
+            setProducts(textFilteredList);
         } catch(error) {
             console.log(error.message);
         }
     }
 
     useEffect(() => {
-        getProducts();
-    }, []);
+        getProducts(searchText);
+    }, [searchText]);
 
     return (
         <Fragment>
-            <h2>--ProductList</h2>
             <Container>
                 <Row>
                     {

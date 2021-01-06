@@ -1,9 +1,20 @@
 import React, { Fragment } from 'react';
+import { Container, Form } from 'react-bootstrap';
 
-const SearchBar = () => {
+const SearchBar = ({ setSearchText }) => {
     return (
         <Fragment>
-            <h3>-----SearchBar</h3>
+            <Container>
+                <Form>
+                    <Form.Group>
+                        <Form.Control 
+                            type='text' 
+                            placeholder='Search...'
+                            onChange={e => setSearchText(e.target.value)}
+                        />
+                    </Form.Group>
+                </Form>
+            </Container>
         </Fragment>
     );
 };
