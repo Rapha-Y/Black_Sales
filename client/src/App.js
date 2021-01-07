@@ -15,7 +15,7 @@ function App() {
       <Login /><hr />
       <Register /><hr />
       <Profile /><hr />
-      <ProductPage /><hr />
+      <ProductPage id={2} /><hr />
       <Cart />
     </Fragment>
   );
