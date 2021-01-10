@@ -9,7 +9,6 @@ const Home = () => {
 
     return (
         <Fragment>
-            <h1>Home</h1>
             <Header />
             <FilterMenu setSearchText={setSearchText} setCategory={setCategory} />
             <ProductList searchText={searchText} category={category} />
