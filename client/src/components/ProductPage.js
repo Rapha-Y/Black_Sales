@@ -1,6 +1,8 @@
 import React, { Fragment, useState, useEffect } from 'react';
 import { Container, Image, Col, Row, Button } from 'react-bootstrap';
 
+import Header from './Header';
+
 const ProductPage = ({ id }) => {
     const [productData, setProductData] = useState({});
 
@@ -34,6 +36,7 @@ const ProductPage = ({ id }) => {
 
     return (
         <Fragment>
+            <Header />
             <Container>
                 <Row>
                     <Col sm={6}>
