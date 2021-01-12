@@ -9,7 +9,7 @@ const Register = ({ setAuth }) => {
         confirmPassword: ''
     });
 
-    const {name, email, password, confirmPassword} = inputs;
+    const { name, email, password, confirmPassword } = inputs;
 
     const onChange = e => {
         setInputs({
