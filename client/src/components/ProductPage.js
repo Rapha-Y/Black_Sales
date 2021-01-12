@@ -1,10 +1,12 @@
 import React, { Fragment, useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 import { Container, Image, Col, Row, Button } from 'react-bootstrap';
 
 import Header from './Header';
 
 const ProductPage = ({ id }) => {
     const [productData, setProductData] = useState({});
+    const params = useParams();
 
     async function getProduct(product_id) {
         try {
@@ -21,8 +23,8 @@ const ProductPage = ({ id }) => {
     }
 
     useEffect(() => {
-        getProduct(id);
-    }, [id]);
+        getProduct(params.id);
+    }, [params.id]);
 
     function getDate(dateString) {
         const date = new Date(dateString);
@@ -36,6 +38,9 @@ const ProductPage = ({ id }) => {
 
     return (
         <Fragment>
+            {
+                /* BUGFIX HEADER ASAP (Login/Profile switch) */
+            }
             <Header />
             <Container>
                 <Row>

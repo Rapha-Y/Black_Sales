@@ -63,9 +63,9 @@ function App() {
             } 
           />
           <Route 
-            exact path='/product' 
+            exact path='/product/:id' 
             render={
-              props => <ProductPage {...props} id={2} />
+              props => <ProductPage {...props} />
             } 
           />
         </Switch>
