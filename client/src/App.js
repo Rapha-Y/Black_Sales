@@ -6,6 +6,7 @@ import Home from './components/Home';
 import Login from './components/Login';
 import Register from './components/Register';
 import ProductPage from './components/ProductPage';
+import Announce from './components/Announce';
 //import Profile from './components/Profile';
 //import Cart from './components/Cart';
 
@@ -67,6 +68,12 @@ function App() {
             render={
               props => <ProductPage {...props} isAuth={isAuthenticated} />
             } 
+          />
+          <Route
+            exact path='/announce'
+            render={
+              props => <Announce {...props} isAuth={isAuthenticated} />
+            }
           />
         </Switch>
       </Router>
