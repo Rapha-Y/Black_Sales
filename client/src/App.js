@@ -65,7 +65,7 @@ function App() {
           <Route 
             exact path='/product/:id' 
             render={
-              props => <ProductPage {...props} />
+              props => <ProductPage {...props} isAuth={isAuthenticated} />
             } 
           />
         </Switch>

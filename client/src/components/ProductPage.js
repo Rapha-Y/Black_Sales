@@ -4,7 +4,7 @@ import { Container, Image, Col, Row, Button } from 'react-bootstrap';
 
 import Header from './Header';
 
-const ProductPage = ({ id }) => {
+const ProductPage = ({ isAuth }) => {
     const [productData, setProductData] = useState({});
     const params = useParams();
 
@@ -38,10 +38,7 @@ const ProductPage = ({ id }) => {
 
     return (
         <Fragment>
-            {
-                /* BUGFIX HEADER ASAP (Login/Profile switch) */
-            }
-            <Header />
+            <Header isAuth={isAuth} />
             <Container>
                 <Row>
                     <Col sm={6}>
