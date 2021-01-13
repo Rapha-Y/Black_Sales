@@ -7,7 +7,7 @@ const Announce = ({ isAuth }) => {
     const [inputs, setInputs] = useState({
         name: '',
         price: '',
-        category: '',
+        category: 'Automotive',
         image: ''
     });
 
@@ -18,18 +18,18 @@ const Announce = ({ isAuth }) => {
             ...inputs,
             [e.target.name]: e.target.value
         });
-
-        try {
-            /* POST product */
-            console.log('I am a placeholder');
-        } catch (error) {
-            console.log(error.message)
-        }
     };
 
     const onSubmitForm = async (e) => {
         e.preventDefault();
-        console.log(name, price, category, image);
+        
+        try {
+            /* POST product */
+            console.log(name, price, category, image);
+            console.log('I am a placeholder');
+        } catch (error) {
+            console.log(error.message)
+        }
     }
 
     return (

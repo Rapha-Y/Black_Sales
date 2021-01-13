@@ -1,5 +1,6 @@
 const router = require('express').Router();
 const pool = require('../db');
+const authorization = require('../middleware/authorization');
 
 router.get('/', async (req, res) => {
     try {
@@ -24,6 +25,24 @@ router.get('/:id', async (req, res) => {
         );
 
         res.json(product.rows[0]);
+    } catch (error) {
+        console.log(error.message);
+        res.status(500).json('Server error');
+    }
+});
+
+router.post('/', authorization, async (req, res) => {
+    try {
+        const { name, price, category, image } = req.body;
+        const date = new Date();
+        const uid = req.user.id;
+
+        const newProduct = await pool.query(
+            'INSERT INTO product (product_name, product_price, product_date, product_category, user_id, product_image) VALUES ($1, $2, $3, $4, $5, $6) RETURNING *',
+            [name, price, date, category, uid, image]
+        );
+
+        res.json(newProduct.rows[0]);
     } catch (error) {
         console.log(error.message);
         res.status(500).json('Server error');
