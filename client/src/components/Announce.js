@@ -24,6 +24,9 @@ const Announce = ({ isAuth }) => {
         e.preventDefault();
         
         try {
+            //Verify product name
+            //Verify product price
+            //Verify image url
             /* POST product */
             console.log(name, price, category, image);
             console.log('I am a placeholder');

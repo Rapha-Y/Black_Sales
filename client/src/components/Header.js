@@ -14,7 +14,11 @@ const Header = ({ isAuth }) => {
                             <Nav.Link href='#'>Profile</Nav.Link> :
                             <Nav.Link href='/login'>Log in</Nav.Link>   
                         }
-                        <Nav.Link href='/announce'>Announce</Nav.Link>
+                        {
+                            isAuth ?
+                            <Nav.Link href='/announce'>Announce</Nav.Link> :
+                            <Nav.Link href='/login'>Announce</Nav.Link>
+                        }
                         <Nav.Link href='#'>Purchases</Nav.Link>
                         <Nav.Link href='#'>Cart</Nav.Link>
                     </Nav>
