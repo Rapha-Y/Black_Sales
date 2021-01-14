@@ -13,7 +13,7 @@ const Product = ({ id, img, title, price }) => {
                 <Card.Img variant='top' src={img} />
                 <Card.Body>
                     <Card.Title>{title}</Card.Title>
-                    <Card.Text>U$ {price / 100}</Card.Text>
+                    <Card.Text>U$ {(price / 100).toFixed(2)}</Card.Text>
                 </Card.Body>
             </Card>
         </Fragment>

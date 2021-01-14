@@ -39,7 +39,7 @@ router.post('/', authorization, async (req, res) => {
 
         const newProduct = await pool.query(
             'INSERT INTO product (product_name, product_price, product_date, product_category, user_id, product_image) VALUES ($1, $2, $3, $4, $5, $6) RETURNING *',
-            [name, price, date, category, uid, image]
+            [name, price * 100, date, category, uid, image]
         );
 
         res.json(newProduct.rows[0]);

@@ -47,8 +47,26 @@ const Announce = ({ isAuth }) => {
                 priceError = 'Product must have a maximum of two decimals';
             }
 
-            setErrors({ nameError, priceError });
-            //POST product
+            if (nameError !== '' || priceError !== '') {
+                setErrors({ nameError, priceError });
+            } else {
+                const myHeaders = new Headers();
+                myHeaders.append('Content-Type', 'application/json');
+                myHeaders.append('token', localStorage.token);
+                
+                const body = { name, price, category, image };
+
+                await fetch(
+                    'http://localhost:5000/products',
+                    {
+                        method: 'POST',
+                        headers: myHeaders,
+                        body: JSON.stringify(body)
+                    }
+                );
+
+                window.location.href = 'http://localhost:3000';
+            }
         } catch (error) {
             console.log(error.message)
         }
