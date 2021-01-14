@@ -6,9 +6,14 @@ import Header from './Header';
 const Announce = ({ isAuth }) => {
     const [inputs, setInputs] = useState({
         name: '',
-        price: '',
+        price: '0',
         category: 'Automotive',
         image: ''
+    });
+
+    const [errors, setErrors] = useState({
+        nameError: '',
+        priceError: ''
     });
 
     const { name, price, category, image } = inputs;
@@ -24,12 +29,26 @@ const Announce = ({ isAuth }) => {
         e.preventDefault();
         
         try {
-            //Verify product name
-            //Verify product price
-            //Verify image url
-            /* POST product */
-            console.log(name, price, category, image);
-            console.log('I am a placeholder');
+            let nameError = '';
+            let priceError = '';
+
+            if (inputs.name === '') {
+                nameError = 'Product must have a name';
+            } else if (inputs.name.length > 255) {
+                nameError = 'Product name must be under 255 characters';
+            }
+    
+            const priceValue = parseFloat(inputs.price);
+            if (priceValue <= 0) {
+                priceError = 'Product price must be greater than 0'
+            } else if (priceValue > 1000000) {
+                priceError = 'Product price cannot go past 1,000,000';
+            } else if (priceValue !== parseFloat(priceValue.toFixed(2))) {
+                priceError = 'Product must have a maximum of two decimals';
+            }
+
+            setErrors({ nameError, priceError });
+            //POST product
         } catch (error) {
             console.log(error.message)
         }
@@ -49,6 +68,12 @@ const Announce = ({ isAuth }) => {
                             placeholder='Enter the product name' 
                             onChange={e => onChange(e)}
                         />
+                        {
+                            errors.nameError !== '' && 
+                            <Form.Text className='text-danger'>
+                                {errors.nameError}
+                            </Form.Text>
+                        }
                     </Form.Group>
                     <Form.Group controlId='price'>
                         <Form.Label>Price:</Form.Label>
@@ -56,9 +81,16 @@ const Announce = ({ isAuth }) => {
                             type='number'
                             name='price'
                             value={price}
+                            step={0.01}
                             placeholder='Enter the price'
                             onChange={e => onChange(e)}
                         />
+                        {
+                            errors.priceError !== '' && 
+                            <Form.Text className='text-danger'>
+                                {errors.priceError}
+                            </Form.Text>
+                        }
                     </Form.Group>
                     <Form.Group controlId='category'>
                         <Form.Label>Category:</Form.Label>
