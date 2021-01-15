@@ -11,7 +11,7 @@ const Header = ({ isAuth }) => {
                     <Nav className='ml-auto'>
                         {
                             isAuth ?
-                            <Nav.Link href='#'>Profile</Nav.Link> :
+                            <Nav.Link href='/profile'>Profile</Nav.Link> :
                             <Nav.Link href='/login'>Log in</Nav.Link>   
                         }
                         {
