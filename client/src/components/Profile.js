@@ -4,12 +4,22 @@ import { Container, Form, Button } from 'react-bootstrap';
 import Header from './Header';
 import './Profile.css';
 
-const Profile = ({ isAuth }) => {
-    const [inputs, setInputs] = useState({
+const Profile = ({ isAuth, setAuth }) => {
+    const [inputs/*, setInputs*/] = useState({
         name: 'Haachama', //fetch it
         email: 'akai.haato@gmail.com', //fetch it
         password: 'password' //no need to fetch
     });
+
+    const logOut = e => {
+        e.preventDefault();
+
+        localStorage.removeItem('token');
+
+        setAuth(false);
+
+        window.location.href = 'http://localhost:3000';
+    };
 
     return (
         <Fragment>
@@ -26,7 +36,7 @@ const Profile = ({ isAuth }) => {
                                 disabled
                                 className='mr-2'
                             />
-                            <Button setInputs={setInputs}>
+                            <Button /*setInputs={setInputs}*/>
                                 Edit
                             </Button>
                         </div>
@@ -41,7 +51,7 @@ const Profile = ({ isAuth }) => {
                                 disabled
                                 className='mr-2'
                             />
-                            <Button setInputs={setInputs}>
+                            <Button /*setInputs={setInputs}*/>
                                 Edit
                             </Button>
                         </div>
@@ -62,7 +72,7 @@ const Profile = ({ isAuth }) => {
                         </div>
                     </Form.Group>
                 </Form>
-                <Button className='btn-danger' block>
+                <Button className='btn-danger' block onClick={e => logOut(e)}>
                     Log out
                 </Button>
             </Container>

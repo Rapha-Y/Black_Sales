@@ -72,7 +72,7 @@ function App() {
           <Route
             exact path='/profile'
             render={
-              props => <Profile {...props} isAuth={isAuthenticated} />
+              props => <Profile {...props} isAuth={isAuthenticated} setAuth={setAuth} />
             }
           />
           <Route
