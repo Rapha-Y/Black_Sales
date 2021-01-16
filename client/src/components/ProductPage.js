@@ -46,11 +46,11 @@ const ProductPage = ({ isAuth }) => {
                     </Col>
                     <Col sm={6}>
                         <h1>{productData.product_name}</h1>
-                        Published {getDate(productData.product_date)} by FETCH USERNAME
+                        Published {getDate(productData.product_date)} by {productData.user_name}
                         <hr />
                         <div style={{display: 'flex'}}>
                             <div className='mr-2'>For:</div>
-                            <h2 style={{color: 'firebrick'}}>U${productData.product_price / 100}</h2>
+                            <h2 style={{color: 'firebrick'}}>U${(productData.product_price / 100).toFixed(2)}</h2>
                         </div>
                         <hr />
                         <Button variant='success' className='mr-2'>

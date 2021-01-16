@@ -19,8 +19,13 @@ router.get('/:id', async (req, res) => {
     try {
         const { id } = req.params;
 
-        const product = await pool.query(
+        /*const product = await pool.query(
             'SELECT * FROM product WHERE product_id = $1',
+            [id]
+        );*/
+
+        const product = await pool.query(
+            'SELECT users.user_name, product.product_name, product.product_price, product.product_date, product.product_category, product.product_image FROM product JOIN users ON product.user_id = users.user_id WHERE product_id = $1',
             [id]
         );
 
