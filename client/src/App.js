@@ -8,7 +8,7 @@ import Register from './components/Register';
 import ProductPage from './components/ProductPage';
 import Announce from './components/Announce';
 import Profile from './components/Profile';
-//import Cart from './components/Cart';
+import Cart from './components/Cart';
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -67,6 +67,12 @@ function App() {
             exact path='/product/:id' 
             render={
               props => <ProductPage {...props} isAuth={isAuthenticated} />
+            } 
+          />
+          <Route 
+            exact path='/cart' 
+            render={
+              props => <Cart {...props} isAuth={isAuthenticated} />
             } 
           />
           <Route

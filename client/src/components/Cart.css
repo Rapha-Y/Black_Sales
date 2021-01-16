@@ -1,0 +1,8 @@
+.cartItem {
+    display: flex;
+    justify-content: space-between;
+}
+
+.cartBuyBtn {
+    float: right;
+}
