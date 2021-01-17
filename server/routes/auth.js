@@ -26,7 +26,16 @@ router.post('/register', async (req, res) => {
             [name, email, bcryptPassword]
         );
 
-        const token = jwtGenerator(newUser.rows[0].user_id);
+        const uid = newUser.rows[0].user_id;
+        
+        const status = 'active';
+
+        await pool.query(
+            'INSERT INTO cart (cart_status, user_id) VALUES ($1, $2)',
+            [status, uid]
+        );
+
+        const token = jwtGenerator(uid);
 
         res.json({ token });
     } catch (error) {
