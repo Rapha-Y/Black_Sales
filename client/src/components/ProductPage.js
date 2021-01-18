@@ -22,6 +22,30 @@ const ProductPage = ({ isAuth }) => {
         }
     }
 
+    const addToCart = async () => {
+        try {
+            const myHeaders = new Headers();
+            myHeaders.append('Content-Type', 'application/json');
+            myHeaders.append('token', localStorage.token);
+
+            const product_id = params.id;
+            const body = { product_id };
+
+            await fetch(
+                'http://localhost:5000/cart/item',
+                {
+                    method: 'POST',
+                    headers: myHeaders,
+                    body: JSON.stringify(body)
+                }
+            );
+
+            window.location.href = 'http://localhost:3000/cart'
+        } catch (error) {
+            console.log(error.message);
+        }
+    };
+
     useEffect(() => {
         getProduct(params.id);
     }, [params.id]);
@@ -53,7 +77,7 @@ const ProductPage = ({ isAuth }) => {
                             <h2 style={{color: 'firebrick'}}>U${(productData.product_price / 100).toFixed(2)}</h2>
                         </div>
                         <hr />
-                        <Button variant='success' className='mr-2'>
+                        <Button variant='success' className='mr-2' onClick={() => addToCart()}>
                             Add to cart
                         </Button>
                         <Button variant='danger'>

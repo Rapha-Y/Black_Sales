@@ -11,9 +11,7 @@ const Profile = ({ isAuth, setAuth }) => {
         password: 'password' //no need to fetch
     });
 
-    const logOut = e => {
-        e.preventDefault();
-
+    const logOut = () => {
         localStorage.removeItem('token');
 
         setAuth(false);
@@ -72,7 +70,7 @@ const Profile = ({ isAuth, setAuth }) => {
                         </div>
                     </Form.Group>
                 </Form>
-                <Button className='btn-danger' block onClick={e => logOut(e)}>
+                <Button className='btn-danger' block onClick={() => logOut()}>
                     Log out
                 </Button>
             </Container>

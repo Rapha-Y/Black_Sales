@@ -18,9 +18,17 @@ router.get('/', authorization, async (req, res) => {
     }
 });
 
-router.post('/item', async (req, res) => {
+router.post('/item', authorization, async (req, res) => {
     try {
-        const { cart_id, product_id } = req.body;
+        const uid = req.user.id;
+        const { product_id } = req.body;
+
+        const cart = await pool.query(
+            'SELECT cart_id FROM cart WHERE user_id = $1 AND cart_status = $2',
+            [uid, 'active']
+        );
+
+        const cart_id = cart.rows[0].cart_id;
 
         const newItem = await pool.query(
             'INSERT INTO cart_product (cart_id, product_id) VALUES ($1, $2) RETURNING *',
