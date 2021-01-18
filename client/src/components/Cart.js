@@ -45,6 +45,25 @@ const Cart = ({ isAuth }) => {
         }
     }
 
+    async function submitCart() {
+        try {
+            await fetch(
+                'http://localhost:5000/cart',
+                {
+                    method: 'POST',
+                    headers: {
+                        token: localStorage.token
+                    }
+                }
+            );
+
+            /* CHANGE THIS FOR PURCHASES PAGE LATER */
+            window.location.href = 'http://localhost:3000'
+        } catch (error) {
+            console.log(error.message);
+        }
+    }
+
     useEffect(() => {
         getProducts();
     }, []);
@@ -77,7 +96,7 @@ const Cart = ({ isAuth }) => {
                         )
                     }
                 </ListGroup>
-                <Button className='btn-success cartBuyBtn mt-2'>
+                <Button className='btn-success cartBuyBtn mt-2' onClick={() => submitCart()}>
                     Confirm purchase
                 </Button>
             </Container>

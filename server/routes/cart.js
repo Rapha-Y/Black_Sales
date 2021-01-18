@@ -18,6 +18,41 @@ router.get('/', authorization, async (req, res) => {
     }
 });
 
+router.post('/', authorization, async (req, res) => {
+    try {
+        const uid = req.user.id;
+
+        const cart = await pool.query(
+            'SELECT cart_id FROM cart WHERE user_id = $1 AND cart_status = $2',
+            [uid, 'active']
+        );
+
+        const cart_id = cart.rows[0].cart_id;
+
+        await pool.query(
+            'UPDATE cart SET cart_status = $1 WHERE cart_id = $2',
+            ['inactive', cart_id]
+        );
+
+        const order_date = new Date();
+
+        await pool.query(
+            'INSERT INTO orders (order_date, cart_id) VALUES ($1, $2)',
+            [order_date, cart_id]
+        );
+
+        const newCart = await pool.query(
+            'INSERT INTO cart (cart_status, user_id) VALUES ($1, $2) RETURNING *',
+            ['active', uid]
+        );
+
+        res.json(newCart.rows[0])
+    } catch (error) {
+        console.log(error.message);
+        res.status(500).json('Server error');
+    }
+});
+
 router.post('/item/:product_id', authorization, async (req, res) => {
     try {
         const uid = req.user.id;
