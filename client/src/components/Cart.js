@@ -27,6 +27,24 @@ const Cart = ({ isAuth }) => {
         }
     }
 
+    async function deleteProduct(id) {
+        try {
+            await fetch(
+                `http://localhost:5000/cart/item/${id}`,
+                {
+                    method: 'DELETE',
+                    headers: { 
+                        token: localStorage.token 
+                    }
+                }
+            );
+
+            setProducts(products.filter(product => product.product_id !== id));
+        } catch (error) {
+            console.log(error.message);
+        }
+    }
+
     useEffect(() => {
         getProducts();
     }, []);
@@ -45,6 +63,15 @@ const Cart = ({ isAuth }) => {
                                 </div>
                                 <div>
                                     U${(product.product_price / 100).toFixed(2)}
+                                    <Button 
+                                        aria-label='Close' 
+                                        className='ml-3' 
+                                        variant='danger' 
+                                        size='sm'
+                                        onClick={() => deleteProduct(product.product_id)}
+                                    >
+                                        <span aria-hidden='true'>&times;</span>
+                                    </Button>
                                 </div>
                             </ListGroup.Item>
                         )
