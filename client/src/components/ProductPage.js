@@ -29,14 +29,12 @@ const ProductPage = ({ isAuth }) => {
             myHeaders.append('token', localStorage.token);
 
             const product_id = params.id;
-            const body = { product_id };
 
             await fetch(
-                'http://localhost:5000/cart/item',
+                `http://localhost:5000/cart/item/${product_id}`,
                 {
                     method: 'POST',
-                    headers: myHeaders,
-                    body: JSON.stringify(body)
+                    headers: myHeaders
                 }
             );
 
