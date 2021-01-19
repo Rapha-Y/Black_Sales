@@ -7,6 +7,7 @@ app.use(express.json());
 app.use('/products', require('./routes/products'));
 app.use('/auth', require('./routes/auth'));
 app.use('/cart', require('./routes/cart'));
+app.use('/purchases', require('./routes/purchases'));
 
 const PORT = 5000;
 app.listen(PORT, () => {
