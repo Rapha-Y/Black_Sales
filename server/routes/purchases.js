@@ -7,7 +7,7 @@ router.get('/', authorization, async (req, res) => {
         const uid = req.user.id;
 
         const productOrder = await pool.query(
-            'SELECT orders.order_id, orders.order_date, cart_product.product_name, cart_product.product_price FROM orders JOIN (SELECT cart.cart_id, cart_product.product_name, cart_product.product_price FROM cart JOIN (SELECT cart_product.cart_id, product.product_name, product.product_price FROM cart_product JOIN product ON cart_product.product_id = product.product_id) AS cart_product ON cart.cart_id = cart_product.cart_id WHERE cart_status = $1 AND user_id = $2) AS cart_product ON orders.cart_id = cart_product.cart_id',
+            'SELECT orders.order_id, orders.order_date, cart_product.product_id, cart_product.product_name, cart_product.product_price FROM orders JOIN (SELECT cart.cart_id, cart_product.product_id, cart_product.product_name, cart_product.product_price FROM cart JOIN (SELECT cart_product.cart_id, product.product_id, product.product_name, product.product_price FROM cart_product JOIN product ON cart_product.product_id = product.product_id) AS cart_product ON cart.cart_id = cart_product.cart_id WHERE cart_status = $1 AND user_id = $2) AS cart_product ON orders.cart_id = cart_product.cart_id',
             ['inactive', uid]
         );
 
@@ -23,6 +23,7 @@ router.get('/', authorization, async (req, res) => {
                     order_date: item.order_date,
                     product_list: [
                         {
+                            product_id: item.product_id,
                             product_name: item.product_name,
                             product_price: item.product_price
                         }
@@ -48,6 +49,7 @@ router.get('/', authorization, async (req, res) => {
                         order_date: item.order_date,
                         product_list: [
                             {
+                                product_id: item.product_id,
                                 product_name: item.product_name,
                                 product_price: item.product_price
                             }
@@ -57,6 +59,7 @@ router.get('/', authorization, async (req, res) => {
                 } else {
                     //add new product to the found order
                     foundOrder.product_list.push({
+                        product_id: item.product_id,
                         product_name: item.product_name,
                         product_price: item.product_price
                     });

@@ -57,8 +57,7 @@ const Cart = ({ isAuth }) => {
                 }
             );
 
-            /* CHANGE THIS FOR PURCHASES PAGE LATER */
-            window.location.href = 'http://localhost:3000'
+            window.location.href = 'http://localhost:3000/purchases'
         } catch (error) {
             console.log(error.message);
         }
