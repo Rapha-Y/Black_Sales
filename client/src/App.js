@@ -9,6 +9,7 @@ import ProductPage from './components/ProductPage';
 import Announce from './components/Announce';
 import Profile from './components/Profile';
 import Cart from './components/Cart';
+import Purchases from './components/Purchases';
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -85,6 +86,12 @@ function App() {
             exact path='/announce'
             render={
               props => <Announce {...props} isAuth={isAuthenticated} />
+            }
+          />
+          <Route
+            exact path='/purchases'
+            render={
+              props => <Purchases {...props} isAuth={isAuthenticated} />
             }
           />
         </Switch>
