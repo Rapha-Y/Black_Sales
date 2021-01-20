@@ -25,7 +25,7 @@ const TagList = ({ setCategory }) => {
 
     return (
         <Fragment>
-            <ButtonGroup toggle onChange={e => handleChange(e.target.value)}>
+            <ButtonGroup toggle onChange={e => handleChange(e.target.value)} className='d-flex'>
                 {
                     categories.map(category => 
                         <Tag
