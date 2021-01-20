@@ -1,0 +1,27 @@
+.tagBtn {
+    min-width: 80px;
+}
+
+@media only screen and (min-width: 494px) {
+    .tagBtn {
+        min-width: 0px;
+    }
+}
+
+@media only screen and (min-width: 768px) {
+    .tagBtn {
+        min-width: 100px;
+    }
+}
+
+@media only screen and (min-width: 992px) {
+    .tagBtn {
+        min-width: 0px;
+    }
+}
+
+@media only screen and (min-width: 1200px) {
+    .tagBtn {
+        min-width: 0px;
+    }
+}
