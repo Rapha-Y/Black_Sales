@@ -1,5 +1,5 @@
 import React, { Fragment, useState } from 'react';
-import { ButtonGroup, Container } from 'react-bootstrap';
+import { ButtonGroup } from 'react-bootstrap';
 import Tag from './Tag';
 
 const categories = [
@@ -25,20 +25,18 @@ const TagList = ({ setCategory }) => {
 
     return (
         <Fragment>
-            <Container>
-                <ButtonGroup toggle onChange={e => handleChange(e.target.value)}>
-                    {
-                        categories.map(category => 
-                            <Tag
-                                key={category}
-                                buttonName={category}
-                                selectedValue={value}
-                                setValue={setValue}
-                            />
-                        )
-                    }
-                </ButtonGroup>
-            </Container>
+            <ButtonGroup toggle onChange={e => handleChange(e.target.value)}>
+                {
+                    categories.map(category => 
+                        <Tag
+                            key={category}
+                            buttonName={category}
+                            selectedValue={value}
+                            setValue={setValue}
+                        />
+                    )
+                }
+            </ButtonGroup>
         </Fragment>
     );
 };
