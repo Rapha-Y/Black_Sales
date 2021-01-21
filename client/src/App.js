@@ -1,5 +1,5 @@
 import React, { Fragment, useEffect, useState } from 'react';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 import Home from './components/Home';
@@ -73,25 +73,37 @@ function App() {
           <Route 
             exact path='/cart' 
             render={
-              props => <Cart {...props} isAuth={isAuthenticated} />
+              props => 
+                isAuthenticated ? 
+                <Cart {...props} isAuth={isAuthenticated} /> :
+                <Redirect to='/login' />
             } 
           />
           <Route
             exact path='/profile'
             render={
-              props => <Profile {...props} isAuth={isAuthenticated} setAuth={setAuth} />
+              props => 
+                isAuthenticated ?
+                <Profile {...props} isAuth={isAuthenticated} setAuth={setAuth} /> :
+                <Redirect to='/login' />
             }
           />
           <Route
             exact path='/announce'
             render={
-              props => <Announce {...props} isAuth={isAuthenticated} />
+              props => 
+                isAuthenticated ?
+                <Announce {...props} isAuth={isAuthenticated} /> :
+                <Redirect to='/login' />
             }
           />
           <Route
             exact path='/purchases'
             render={
-              props => <Purchases {...props} isAuth={isAuthenticated} />
+              props => 
+                isAuthenticated ? 
+                <Purchases {...props} isAuth={isAuthenticated} /> :
+                <Redirect to='/login' />
             }
           />
         </Switch>
