@@ -4,6 +4,7 @@ import { Container, Image, Col, Row, Button } from 'react-bootstrap';
 
 import Header from './Header';
 import Footer from './Footer';
+import './Body.css';
 
 const ProductPage = ({ isAuth }) => {
     const [productData, setProductData] = useState({});
@@ -62,7 +63,7 @@ const ProductPage = ({ isAuth }) => {
     return (
         <Fragment>
             <Header isAuth={isAuth} />
-            <Container>
+            <Container className='pageBody'>
                 <Row>
                     <Col sm={6}>
                         <Image src={productData.product_image} fluid />

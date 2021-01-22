@@ -2,6 +2,8 @@ import React, { Fragment, useState } from 'react';
 import { Container, Form, Button } from 'react-bootstrap';
 
 import Header from './Header';
+import Footer from './Footer';
+import './Body.css';
 import './Profile.css';
 
 const Profile = ({ isAuth, setAuth }) => {
@@ -22,7 +24,7 @@ const Profile = ({ isAuth, setAuth }) => {
     return (
         <Fragment>
             <Header isAuth={isAuth} />
-            <Container>
+            <Container className='pageBody'>
                 <Form>
                     <Form.Group>
                         <Form.Label>Username:</Form.Label>
@@ -74,6 +76,7 @@ const Profile = ({ isAuth, setAuth }) => {
                     Log out
                 </Button>
             </Container>
+            <Footer />
         </Fragment>
     );
 };

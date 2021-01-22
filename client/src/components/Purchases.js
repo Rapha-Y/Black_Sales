@@ -2,6 +2,8 @@ import React, { Fragment, useState, useEffect } from 'react';
 import { Container, ListGroup } from 'react-bootstrap';
 
 import Header from './Header';
+import Footer from './Footer';
+import './Body.css';
 import './Purchases.css';
 
 const Purchases = ({ isAuth }) => {
@@ -44,7 +46,7 @@ const Purchases = ({ isAuth }) => {
     return (
         <Fragment>
             <Header isAuth={isAuth} />
-            <Container>
+            <Container className='pageBody'>
                 {
                     purchases.length !== 0 &&
                     purchases.map(purchase => 
@@ -71,6 +73,7 @@ const Purchases = ({ isAuth }) => {
                     )
                 }
             </Container>
+            <Footer />
         </Fragment>
     );
 };

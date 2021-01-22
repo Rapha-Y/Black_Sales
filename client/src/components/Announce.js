@@ -2,6 +2,8 @@ import React, { Fragment, useState } from 'react';
 import { Container, Form, Button } from 'react-bootstrap';
 
 import Header from './Header';
+import Footer from './Footer';
+import './Body.css';
 
 const Announce = ({ isAuth }) => {
     const [inputs, setInputs] = useState({
@@ -75,7 +77,7 @@ const Announce = ({ isAuth }) => {
     return (
         <Fragment>
             <Header isAuth={isAuth} />
-            <Container>
+            <Container className='pageBody'>
                 <Form onSubmit={onSubmitForm}>
                     <Form.Group controlId='name'>
                         <Form.Label>Product:</Form.Label>
@@ -145,6 +147,7 @@ const Announce = ({ isAuth }) => {
                     </Button>
                 </Form>
             </Container>
+            <Footer />
         </Fragment>
     );
 }

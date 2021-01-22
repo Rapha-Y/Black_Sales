@@ -2,6 +2,8 @@ import React, { Fragment, useState, useEffect } from 'react';
 import { Container, ListGroup, Button } from 'react-bootstrap';
 
 import Header from './Header';
+import Footer from './Footer';
+import './Body.css';
 import './Cart.css';
 
 const Cart = ({ isAuth }) => {
@@ -70,7 +72,7 @@ const Cart = ({ isAuth }) => {
     return (
         <Fragment>
             <Header isAuth={isAuth} />
-            <Container>
+            <Container className='pageBody'>
                 <ListGroup>
                     {
                         products.length !== 0 &&
@@ -95,10 +97,13 @@ const Cart = ({ isAuth }) => {
                         )
                     }
                 </ListGroup>
-                <Button className='btn-success cartBuyBtn mt-2' onClick={() => submitCart()}>
-                    Confirm purchase
-                </Button>
+                <div className='cartBuyBtnContainer'>
+                    <Button className='btn-success cartBuyBtn mt-2' onClick={() => submitCart()}>
+                        Confirm purchase
+                    </Button>
+                </div>
             </Container>
+            <Footer />
         </Fragment>
     );
 };

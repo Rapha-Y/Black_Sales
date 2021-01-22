@@ -4,6 +4,7 @@ import Header from './Header';
 import FilterMenu from './FilterMenu';
 import ProductList from './ProductList';
 import Footer from './Footer';
+import './Body.css';
 
 const Home = ({ isAuth }) => {
     const [searchText, setSearchText] = useState('');
@@ -12,8 +13,10 @@ const Home = ({ isAuth }) => {
     return (
         <Fragment>
             <Header isAuth={isAuth} />
-            <FilterMenu setSearchText={setSearchText} setCategory={setCategory} />
-            <ProductList searchText={searchText} category={category} />
+            <div className='pageBody'>
+                <FilterMenu setSearchText={setSearchText} setCategory={setCategory} />
+                <ProductList searchText={searchText} category={category} />
+            </div>
             <Footer />
         </Fragment>
     );
