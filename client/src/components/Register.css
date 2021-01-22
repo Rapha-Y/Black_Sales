@@ -1,0 +1,13 @@
+.regPage {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.regFormCard {
+    width: 320px;
+}
+
+.regRedirectText {
+    text-align: center;
+}

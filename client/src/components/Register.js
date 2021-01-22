@@ -1,5 +1,8 @@
 import React, { Fragment, useState } from 'react';
-import { Container, Form, Button } from 'react-bootstrap';
+import { Container, Form, Button, Card } from 'react-bootstrap';
+
+import './Body.css';
+import './Register.css';
 
 const Register = ({ setAuth }) => {
     const [inputs, setInputs] = useState({
@@ -61,53 +64,63 @@ const Register = ({ setAuth }) => {
     
     return (
         <Fragment>
-            <Container>
-                <Form onSubmit={onSubmitForm}>
-                    <Form.Group controlId='name'>
-                        <Form.Label>Username:</Form.Label>
-                        <Form.Control 
-                            type='text' 
-                            name='name'
-                            value={name}
-                            placeholder='Enter your username'
-                            onChange={e => onChange(e)}
-                        />
-                    </Form.Group>
-                    <Form.Group controlId='email'>
-                        <Form.Label>E-mail:</Form.Label>
-                        <Form.Control 
-                            type='email'
-                            name='email'
-                            value={email} 
-                            placeholder='Enter your e-mail'
-                            onChange={e => onChange(e)}
-                        />
-                    </Form.Group>
-                    <Form.Group controlId='password'>
-                        <Form.Label>Password:</Form.Label>
-                        <Form.Control 
-                            type='password'
-                            name='password' 
-                            value={password}
-                            placeholder='Enter your password'
-                            onChange={e => onChange(e)}
-                        />
-                    </Form.Group>
-                    <Form.Group controlId='confirmPassword'>
-                        <Form.Label>Confirm password:</Form.Label>
-                        <Form.Control 
-                            type='password'
-                            name='confirmPassword'
-                            value={confirmPassword} 
-                            placeholder='Confirm your password'
-                            onChange={e => onChange(e)}
-                        />
-                    </Form.Group>
-                    <Button variant='primary' type='submit'>
-                        Submit
-                    </Button>
-                </Form>
-            </Container>
+            <div className='bg-dark appBody regPage'>
+                <Card className='regFormCard'>
+                    <Card.Body>
+                        <Container>
+                            <Form onSubmit={onSubmitForm}>
+                                <Form.Group controlId='name'>
+                                    <Form.Label>Username:</Form.Label>
+                                    <Form.Control 
+                                        type='text' 
+                                        name='name'
+                                        value={name}
+                                        placeholder='Enter your username'
+                                        onChange={e => onChange(e)}
+                                    />
+                                </Form.Group>
+                                <Form.Group controlId='email'>
+                                    <Form.Label>E-mail:</Form.Label>
+                                    <Form.Control 
+                                        type='email'
+                                        name='email'
+                                        value={email} 
+                                        placeholder='Enter your e-mail'
+                                        onChange={e => onChange(e)}
+                                    />
+                                </Form.Group>
+                                <Form.Group controlId='password'>
+                                    <Form.Label>Password:</Form.Label>
+                                    <Form.Control 
+                                        type='password'
+                                        name='password' 
+                                        value={password}
+                                        placeholder='Enter your password'
+                                        onChange={e => onChange(e)}
+                                    />
+                                </Form.Group>
+                                <Form.Group controlId='confirmPassword'>
+                                    <Form.Label>Confirm password:</Form.Label>
+                                    <Form.Control 
+                                        type='password'
+                                        name='confirmPassword'
+                                        value={confirmPassword} 
+                                        placeholder='Confirm your password'
+                                        onChange={e => onChange(e)}
+                                    />
+                                </Form.Group>
+                                <Button className='mt-5' variant='primary' type='submit' block>
+                                    Submit
+                                </Button>
+                                <hr />
+                                <div className='regRedirectText'>
+                                    Already have an account? <a href='/login'>Log in</a>
+                                </div>
+                            </Form>
+                        </Container>
+                    </Card.Body>
+                </Card>
+            </div>
         </Fragment>
     );
 };

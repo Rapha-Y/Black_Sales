@@ -1,5 +1,3 @@
-I'll be filled later, thanks for the comprehension.
-
 Remove unneeded manual redirects (present on Header)
 Fix Log In/Profile flick upon page load (present on Header)
 
@@ -9,4 +7,5 @@ Add link from login to registration page
 Add buy now functionality
 Customize cart page for empty carts
 Refactor code (last step)
+Write readme (actual last step)
 MAKE THINGS PRETTIER!!
