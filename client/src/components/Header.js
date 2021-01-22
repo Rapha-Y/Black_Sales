@@ -38,7 +38,7 @@ const Header = ({ isAuth }) => {
                         {
                             isAuth ?
                             <Nav.Link href='/cart'>Cart</Nav.Link> :
-                            <Nav.Link href='/login'>Cart</Nav.Link>   
+                            <Nav.Link href='/login'>Cart</Nav.Link>
                         }
                     </Nav>
                 </Navbar.Collapse>

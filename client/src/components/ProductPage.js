@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import { Container, Image, Col, Row, Button } from 'react-bootstrap';
 
 import Header from './Header';
+import Footer from './Footer';
 
 const ProductPage = ({ isAuth }) => {
     const [productData, setProductData] = useState({});
@@ -84,6 +85,7 @@ const ProductPage = ({ isAuth }) => {
                     </Col>
                 </Row>
             </Container>
+            <Footer />
         </Fragment>
     );
 };

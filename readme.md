@@ -1,7 +1,7 @@
 I'll be filled later, thanks for the comprehension.
 
-Add somewhere (footer?) later:
-<div>Icons made by <a href="https://www.freepik.com" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
+Remove unneeded manual redirects (present on Header)
+Fix Log In/Profile flick upon page load (present on Header)
 
 Add footer
 Add pagination to products displayed (?)

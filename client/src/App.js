@@ -12,6 +12,7 @@ import Cart from './components/Cart';
 import Purchases from './components/Purchases';
 
 function App() {
+  const [isReady, setIsReady] = useState(false);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
 
   const setAuth = (boolean) => {
@@ -33,6 +34,8 @@ function App() {
       const parseRes = await response.json();
 
       parseRes === true ? setIsAuthenticated(true) : setIsAuthenticated(false);
+
+      setIsReady(true);
     } catch (error) {
       console.log(error.message);
     }
@@ -74,36 +77,52 @@ function App() {
             exact path='/cart' 
             render={
               props => 
-                isAuthenticated ? 
-                <Cart {...props} isAuth={isAuthenticated} /> :
-                <Redirect to='/login' />
+                isReady ? 
+                (
+                  isAuthenticated ? 
+                  <Cart {...props} isAuth={isAuthenticated}/> : 
+                  <Redirect to='/login' />
+                ) :
+                <div>Loader placeholder</div>
             } 
           />
           <Route
             exact path='/profile'
             render={
               props => 
-                isAuthenticated ?
-                <Profile {...props} isAuth={isAuthenticated} setAuth={setAuth} /> :
-                <Redirect to='/login' />
+                isReady ? 
+                (
+                  isAuthenticated ?
+                  <Profile {...props} isAuth={isAuthenticated} setAuth={setAuth} /> :
+                  <Redirect to='/login' />
+                ) :
+                <div>Loader placeholder</div>
             }
           />
           <Route
             exact path='/announce'
             render={
               props => 
-                isAuthenticated ?
-                <Announce {...props} isAuth={isAuthenticated} /> :
-                <Redirect to='/login' />
+                isReady ?
+                (
+                  isAuthenticated ?
+                  <Announce {...props} isAuth={isAuthenticated} /> :
+                  <Redirect to='/login' />
+                ) :
+                <div>Loader placeholder</div>
             }
           />
           <Route
             exact path='/purchases'
             render={
               props => 
-                isAuthenticated ? 
-                <Purchases {...props} isAuth={isAuthenticated} /> :
-                <Redirect to='/login' />
+                isReady ? 
+                (
+                  isAuthenticated ?
+                  <Purchases {...props} isAuth={isAuthenticated} /> :
+                  <Redirect to='/login' />
+                ) :
+                <div>Loader placeholder</div>
             }
           />
         </Switch>
