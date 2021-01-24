@@ -1,5 +1,8 @@
 import React, { Fragment, useState } from 'react';
-import { Container, Form, Button } from 'react-bootstrap';
+import { Container, Form, Button, Card } from 'react-bootstrap';
+
+import './Body.css';
+import './Login.css';
 
 const Login = ({ setAuth }) => {
     const [inputs, setInputs] = useState({
@@ -51,33 +54,46 @@ const Login = ({ setAuth }) => {
 
     return (
         <Fragment>
-            <Container>
-                <Form onSubmit={onSubmitForm}>
-                    <Form.Group controlId='email'>
-                        <Form.Label>E-mail:</Form.Label>
-                        <Form.Control 
-                            type='email' 
-                            name='email'
-                            value={email}
-                            placeholder='Enter your e-mail' 
-                            onChange={e => onChange(e)}
-                        />
-                    </Form.Group>
-                    <Form.Group controlId='password'>
-                        <Form.Label>Password:</Form.Label>
-                        <Form.Control 
-                            type='password'
-                            name='password'
-                            value={password}
-                            placeholder='Enter your password'
-                            onChange={e => onChange(e)}
-                        />
-                    </Form.Group>
-                    <Button variant='primary' type='submit'>
-                        Submit
-                    </Button>
-                </Form>
-            </Container>
+            <div className='bg-dark appBody regPage'>
+                <Card className='regFormCard'>
+                    <Card.Body>
+                        <Container>
+                            <Form onSubmit={onSubmitForm}>
+                                <Form.Group controlId='email'>
+                                    <Form.Label>E-mail:</Form.Label>
+                                    <Form.Control 
+                                        type='email' 
+                                        name='email'
+                                        value={email}
+                                        placeholder='Enter your e-mail' 
+                                        onChange={e => onChange(e)}
+                                    />
+                                </Form.Group>
+                                <Form.Group controlId='password'>
+                                    <Form.Label>Password:</Form.Label>
+                                    <Form.Control 
+                                        type='password'
+                                        name='password'
+                                        value={password}
+                                        placeholder='Enter your password'
+                                        onChange={e => onChange(e)}
+                                    />
+                                </Form.Group>
+                                <Button className='mt-5' variant='primary' type='submit' block>
+                                    Submit
+                                </Button>
+                                <hr />
+                                <div className='logRedirectText'>
+                                    Don't have an account? <a href='/register'>Sign up</a>
+                                </div>
+                                <div className='logRedirectText'>
+                                    or <a href='/'>browse as a guest.</a>
+                                </div>
+                            </Form>
+                        </Container>
+                    </Card.Body>
+                </Card>
+            </div>
         </Fragment>
     );
 };

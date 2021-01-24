@@ -1,0 +1,13 @@
+.logPage {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.logFormCard {
+    width: 320px;
+}
+
+.logRedirectText {
+    text-align: center;
+}
