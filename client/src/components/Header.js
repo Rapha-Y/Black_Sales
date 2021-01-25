@@ -25,21 +25,9 @@ const Header = ({ isAuth }) => {
                             <Nav.Link href='/profile'>Profile</Nav.Link> :
                             <Nav.Link href='/login'>Log in</Nav.Link>   
                         }
-                        {
-                            isAuth ?
-                            <Nav.Link href='/announce'>Announce</Nav.Link> :
-                            <Nav.Link href='/login'>Announce</Nav.Link>
-                        }
-                        {
-                            isAuth ?
-                            <Nav.Link href='/purchases'>Purchases</Nav.Link> :
-                            <Nav.Link href='/login'>Purchases</Nav.Link>
-                        }
-                        {
-                            isAuth ?
-                            <Nav.Link href='/cart'>Cart</Nav.Link> :
-                            <Nav.Link href='/login'>Cart</Nav.Link>
-                        }
+                        <Nav.Link href='/announce'>Announce</Nav.Link>
+                        <Nav.Link href='/purchases'>Purchases</Nav.Link>
+                        <Nav.Link href='/cart'>Cart</Nav.Link>
                     </Nav>
                 </Navbar.Collapse>
             </Navbar>
