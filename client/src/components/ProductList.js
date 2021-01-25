@@ -8,24 +8,12 @@ const ProductList = ({ searchText, category }) => {
     async function getProducts(text, tag) {
         try {
             const response = await fetch(
-                'http://localhost:5000/products'
+                `http://localhost:5000/products?category=${tag}&text=${text}`
             );
 
             const parseRes = await response.json();
 
-            const textFilteredList = parseRes.filter(product =>
-                product.product_name.includes(text)
-            );
-
-            if (tag === 'All') {
-                setProducts(textFilteredList);
-            } else {
-                const tagFilteredList = textFilteredList.filter(product => 
-                    product.product_category === tag
-                );
-
-                setProducts(tagFilteredList);
-            }
+            setProducts(parseRes);
         } catch(error) {
             console.log(error.message);
         }

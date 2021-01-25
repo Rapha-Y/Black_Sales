@@ -1,12 +1,26 @@
 const router = require('express').Router();
 const pool = require('../db');
 const authorization = require('../middleware/authorization');
+const url = require('url');
 
 router.get('/', async (req, res) => {
     try {
-        const products = await pool.query(
-            'SELECT product_id, product_image, product_name, product_price, product_category FROM product'
-        );
+        const queryObj = url.parse(req.url, true).query;
+        const { category, text } = queryObj;
+
+        let products;
+
+        if (category === 'All') {
+            products = await pool.query(
+                'SELECT product_id, product_image, product_name, product_price FROM product WHERE LOWER(product_name) LIKE LOWER($1) ORDER BY product_date DESC LIMIT 100',
+                [`%${text}%`]
+            );
+        } else {
+            products = await pool.query(
+                'SELECT product_id, product_image, product_name, product_price FROM product WHERE product_category = $1 AND LOWER(product_name) LIKE LOWER($2) ORDER BY product_date DESC LIMIT 100',
+                [category, `%${text}%`]
+            );
+        }
 
         res.json(products.rows);
     } catch (error) {
