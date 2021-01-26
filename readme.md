@@ -1,8 +1,7 @@
 Fix Log In/Profile flick upon page load (present on Header)
-Add pagination to products displayed (?)
 Add buy now functionality
 Customize cart page for empty carts
-Add display for no products matches
+Add pagination to products displayed (?)
 
 Refactor code (last step)
 Write readme (actual last step)

@@ -1,0 +1,13 @@
+.zeroMatchContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    height: 100px;
+}
+
+@media only screen and (min-width: 494px) {
+    .zeroMatchContainer {
+        height: 200px;
+    }
+}
