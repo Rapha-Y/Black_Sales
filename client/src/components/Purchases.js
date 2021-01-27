@@ -32,8 +32,8 @@ const Purchases = ({ isAuth }) => {
     function getDate(dateString) {
         const date = new Date(dateString);
 
-        const month = date.getDate();
-        const day = date.getDay();
+        const month = date.getMonth() + 1;
+        const day = date.getDate();
         const year = date.getFullYear();
 
         return `${month}/${day}/${year}`;
