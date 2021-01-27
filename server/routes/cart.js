@@ -46,7 +46,7 @@ router.post('/', authorization, async (req, res) => {
             ['active', uid]
         );
 
-        res.json(newCart.rows[0])
+        res.json(newCart.rows[0]);
     } catch (error) {
         console.log(error.message);
         res.status(500).json('Server error');
@@ -71,6 +71,37 @@ router.post('/item/:product_id', authorization, async (req, res) => {
         );
 
         res.json(newItem.rows[0]);
+    } catch (error) {
+        console.log(error.message);
+        res.status(500).json('Server error');
+    }
+});
+
+router.post('/instant/item/:product_id', authorization, async (req, res) => {
+    try {
+        const uid = req.user.id;
+        const { product_id } = req.params;
+
+        const newCart = await pool.query(
+            'INSERT INTO cart (cart_status, user_id) VALUES ($1, $2) RETURNING *',
+            ['inactive', uid]
+        );
+
+        const cart_id = newCart.rows[0].cart_id;
+
+        await pool.query(
+            'INSERT INTO cart_product (cart_id, product_id) VALUES ($1, $2) RETURNING *',
+            [cart_id, product_id]
+        );
+
+        const order_date = new Date();
+
+        const newOrder = await pool.query(
+            'INSERT INTO orders (order_date, cart_id) VALUES ($1, $2) RETURNING *',
+            [order_date, cart_id]
+        );
+
+        res.json(newOrder.rows[0]);
     } catch (error) {
         console.log(error.message);
         res.status(500).json('Server error');

@@ -46,6 +46,28 @@ const ProductPage = ({ isAuth }) => {
         }
     };
 
+    const buyProductNow = async () => {
+        try {
+            const myHeaders = new Headers();
+            myHeaders.append('Content-Type', 'application/json');
+            myHeaders.append('token', localStorage.token);
+
+            const product_id = params.id;
+
+            await fetch(
+                `http://localhost:5000/cart/instant/item/${product_id}`,
+                {
+                    method: 'POST',
+                    headers: myHeaders
+                }
+            );
+
+            window.location.href = 'http://localhost:3000/purchases'
+        } catch (error) {
+            console.log(error.message);
+        }
+    };
+
     useEffect(() => {
         getProduct(params.id);
     }, [params.id]);
@@ -80,7 +102,7 @@ const ProductPage = ({ isAuth }) => {
                         <Button variant='success' className='mr-2' onClick={() => addToCart()}>
                             Add to cart
                         </Button>
-                        <Button variant='danger'>
+                        <Button variant='danger' onClick={() => buyProductNow()}>
                             Buy now!
                         </Button>
                     </Col>
