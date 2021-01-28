@@ -17,8 +17,6 @@ const Profile = ({ isReady, isAuth, setAuth }) => {
         localStorage.removeItem('token');
 
         setAuth(false);
-
-        window.location.href = 'http://localhost:3000';
     };
 
     return (
