@@ -1,5 +1,6 @@
 Mandatory:
-MAKE THINGS PRETTIER!!
+Fix site flick on load
+Fix bottom-right button display on small screens
 
 Optional:
 Add pagination to products displayed - Needs bigger test sample.

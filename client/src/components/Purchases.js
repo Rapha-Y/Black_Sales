@@ -62,7 +62,7 @@ const Purchases = ({ isReady, isAuth }) => {
                         ) :
                         (
                             purchases.map(purchase => 
-                                <div key={purchase.order_id} className='mt-4'>
+                                <div key={purchase.order_id} className='my-3'>
                                     <span>Bought on {getDate(purchase.order_date)}</span>
                                     <ListGroup className='mt-2'>
                                         {

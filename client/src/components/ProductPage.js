@@ -5,6 +5,7 @@ import { Container, Image, Col, Row, Button } from 'react-bootstrap';
 import Header from './Header';
 import Footer from './Footer';
 import './Body.css';
+import './ProductPage.css';
 
 const ProductPage = ({ isReady, isAuth }) => {
     const [productData, setProductData] = useState({});
@@ -85,26 +86,32 @@ const ProductPage = ({ isReady, isAuth }) => {
     return (
         <Fragment>
             <Header isReady={isReady} isAuth={isAuth} />
-            <Container className='pageBody'>
+            <Container className='pageBody mt-3'>
                 <Row>
-                    <Col sm={6}>
+                    <Col sm={7} className='mb-3'>
                         <Image src={productData.product_image} fluid />
                     </Col>
-                    <Col sm={6}>
+                    <Col sm={5} className='mb-5 productInfoBox'>
                         <h1>{productData.product_name}</h1>
                         Published {getDate(productData.product_date)} by {productData.user_name}
-                        <hr />
+                        <div className='lineSeparator'>
+                            <hr />
+                        </div>
                         <div style={{display: 'flex'}}>
                             <div className='mr-2'>For:</div>
-                            <h2 style={{color: 'firebrick'}}>U${(productData.product_price / 100).toFixed(2)}</h2>
+                            <h2 className='mb-0 priceValue'>U${(productData.product_price / 100).toFixed(2)}</h2>
                         </div>
-                        <hr />
-                        <Button variant='success' className='mr-2' onClick={() => addToCart()}>
-                            Add to cart
-                        </Button>
-                        <Button variant='danger' onClick={() => buyProductNow()}>
-                            Buy now!
-                        </Button>
+                        <div className='lineSeparator'>
+                            <hr />
+                        </div>
+                        <div>
+                            <Button variant='success' className='mr-2' onClick={() => addToCart()}>
+                                Add to cart
+                            </Button>
+                            <Button variant='danger' onClick={() => buyProductNow()}>
+                                Buy now!
+                            </Button>
+                        </div>
                     </Col>
                 </Row>
             </Container>

@@ -1,0 +1,14 @@
+.productInfoBox {
+    display: flex; 
+    flex-direction: column; 
+    align-items: center; 
+    justify-content: center;
+}
+
+.lineSeparator {
+    width: 100%;
+}
+
+.priceValue {
+    color: firebrick;
+}

@@ -24,7 +24,7 @@ const Profile = ({ isReady, isAuth, setAuth }) => {
     return (
         <Fragment>
             <Header isReady={isReady} isAuth={isAuth} />
-            <Container className='pageBody'>
+            <Container className='pageBody my-3'>
                 <Form>
                     <Form.Group>
                         <Form.Label>Username:</Form.Label>
@@ -72,7 +72,7 @@ const Profile = ({ isReady, isAuth, setAuth }) => {
                         </div>
                     </Form.Group>
                 </Form>
-                <Button className='btn-danger' block onClick={() => logOut()}>
+                <Button className='btn-danger mt-3 logOutBtn' onClick={() => logOut()}>
                     Log out
                 </Button>
             </Container>

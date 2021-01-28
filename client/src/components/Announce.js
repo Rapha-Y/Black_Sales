@@ -4,6 +4,7 @@ import { Container, Form, Button } from 'react-bootstrap';
 import Header from './Header';
 import Footer from './Footer';
 import './Body.css';
+import './Announce.css';
 
 const Announce = ({ isReady, isAuth }) => {
     const [inputs, setInputs] = useState({
@@ -77,7 +78,7 @@ const Announce = ({ isReady, isAuth }) => {
     return (
         <Fragment>
             <Header isReady={isReady} isAuth={isAuth} />
-            <Container className='pageBody'>
+            <Container className='pageBody my-3'>
                 <Form onSubmit={onSubmitForm}>
                     <Form.Group controlId='name'>
                         <Form.Label>Product:</Form.Label>
@@ -142,8 +143,8 @@ const Announce = ({ isReady, isAuth }) => {
                             onChange={e => onChange(e)}
                         />
                     </Form.Group>
-                    <Button variant='primary' type='submit'>
-                        Submit
+                    <Button className='mt-2 announceBtn' variant='primary' type='submit'>
+                        Submit product
                     </Button>
                 </Form>
             </Container>
