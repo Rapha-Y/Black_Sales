@@ -8,8 +8,9 @@ import './Cart.css';
 
 const Cart = ({ isReady, isAuth }) => {
     const [products, setProducts] = useState([]);
+    const [productsAreReady, setProductsAreReady] = useState(false);
 
-    async function getProducts() {
+    async function getProducts(setProductsAreReady) {
         try {
             const response = await fetch(
                 'http://localhost:5000/cart',
@@ -24,6 +25,7 @@ const Cart = ({ isReady, isAuth }) => {
             const parseRes = await response.json();
 
             setProducts(parseRes);
+            setProductsAreReady(true);
         } catch (error) {
             console.log(error.message);
         }
@@ -66,55 +68,58 @@ const Cart = ({ isReady, isAuth }) => {
     }
 
     useEffect(() => {
-        getProducts();
-    }, []);
+        getProducts(setProductsAreReady);
+    }, [setProductsAreReady]);
 
     return (
         <Fragment>
             <Header isReady={isReady} isAuth={isAuth} />
-            <Container className='pageBody'>
-                <ListGroup>
-                    {
-                        products.length === 0 ? 
-                        (
-                            <Container className='zeroProductContainer mb-5'>
-                                <h3 className='text-muted'>
-                                    Your cart is empty! <a href='/'>Check out the store!</a>
-                                </h3>
-                            </Container>
-                        ) :
-                        (
-                            products.map(product =>
-                                <ListGroup.Item key={product.product_id} className='cartItem'>
-                                    <div>
-                                        {product.product_name}
-                                    </div>
-                                    <div>
-                                        U${(product.product_price / 100).toFixed(2)}
-                                        <Button 
-                                            aria-label='Close' 
-                                            className='ml-3' 
-                                            variant='danger' 
-                                            size='sm'
-                                            onClick={() => deleteProduct(product.product_id)}
-                                        >
-                                            <span aria-hidden='true'>&times;</span>
-                                        </Button>
-                                    </div>
-                                </ListGroup.Item>
+            {
+                productsAreReady &&
+                <Container className='pageBody'>
+                    <ListGroup>
+                        {
+                            products.length === 0 ? 
+                            (
+                                <Container className='zeroProductContainer mb-5'>
+                                    <h3 className='text-muted'>
+                                        Your cart is empty! <a href='/'>Check out the store!</a>
+                                    </h3>
+                                </Container>
+                            ) :
+                            (
+                                products.map(product =>
+                                    <ListGroup.Item key={product.product_id} className='cartItem'>
+                                        <div>
+                                            {product.product_name}
+                                        </div>
+                                        <div>
+                                            U${(product.product_price / 100).toFixed(2)}
+                                            <Button 
+                                                aria-label='Close' 
+                                                className='ml-3' 
+                                                variant='danger' 
+                                                size='sm'
+                                                onClick={() => deleteProduct(product.product_id)}
+                                            >
+                                                <span aria-hidden='true'>&times;</span>
+                                            </Button>
+                                        </div>
+                                    </ListGroup.Item>
+                                )
                             )
-                        )
+                        }
+                    </ListGroup>
+                    {
+                        products.length !== 0 &&
+                        <div className='cartBuyBtnContainer'>
+                            <Button className='btn-success cartBuyBtn mt-2' onClick={() => submitCart()}>
+                                Confirm purchase
+                            </Button>
+                        </div>
                     }
-                </ListGroup>
-                {
-                    products.length !== 0 &&
-                    <div className='cartBuyBtnContainer'>
-                        <Button className='btn-success cartBuyBtn mt-2' onClick={() => submitCart()}>
-                            Confirm purchase
-                        </Button>
-                    </div>
-                }
-            </Container>
+                </Container>
+            }
             <Footer />
         </Fragment>
     );
