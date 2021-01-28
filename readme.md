@@ -1,5 +1,4 @@
 Mandatory:
-Fix Log In/Profile flick upon page load (present on Header)
 MAKE THINGS PRETTIER!!
 
 Optional:
