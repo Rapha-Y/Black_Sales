@@ -6,7 +6,7 @@ import Footer from './Footer';
 import './Body.css';
 import './Profile.css';
 
-const Profile = ({ isAuth, setAuth }) => {
+const Profile = ({ isReady, isAuth, setAuth }) => {
     const [inputs/*, setInputs*/] = useState({
         name: 'Haachama', //fetch it
         email: 'akai.haato@gmail.com', //fetch it
@@ -23,7 +23,7 @@ const Profile = ({ isAuth, setAuth }) => {
 
     return (
         <Fragment>
-            <Header isAuth={isAuth} />
+            <Header isReady={isReady} isAuth={isAuth} />
             <Container className='pageBody'>
                 <Form>
                     <Form.Group>

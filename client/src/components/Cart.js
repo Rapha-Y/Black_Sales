@@ -6,7 +6,7 @@ import Footer from './Footer';
 import './Body.css';
 import './Cart.css';
 
-const Cart = ({ isAuth }) => {
+const Cart = ({ isReady, isAuth }) => {
     const [products, setProducts] = useState([]);
 
     async function getProducts() {
@@ -71,7 +71,7 @@ const Cart = ({ isAuth }) => {
 
     return (
         <Fragment>
-            <Header isAuth={isAuth} />
+            <Header isReady={isReady} isAuth={isAuth} />
             <Container className='pageBody'>
                 <ListGroup>
                     {

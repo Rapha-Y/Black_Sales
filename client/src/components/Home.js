@@ -6,13 +6,13 @@ import ProductList from './ProductList';
 import Footer from './Footer';
 import './Body.css';
 
-const Home = ({ isAuth }) => {
+const Home = ({ isReady, isAuth }) => {
     const [searchText, setSearchText] = useState('');
     const [category, setCategory] = useState('All');
 
     return (
         <Fragment>
-            <Header isAuth={isAuth} />
+            <Header isReady={isReady} isAuth={isAuth} />
             <div className='pageBody'>
                 <FilterMenu setSearchText={setSearchText} setCategory={setCategory} />
                 <ProductList searchText={searchText} category={category} />

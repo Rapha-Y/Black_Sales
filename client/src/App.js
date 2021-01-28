@@ -52,7 +52,7 @@ function App() {
           <Route 
             exact path='/' 
             render={
-              props => <Home {...props} isAuth={isAuthenticated} />
+              props => <Home {...props} isReady={isReady} isAuth={isAuthenticated} />
             } 
           />
           <Route 
@@ -70,7 +70,7 @@ function App() {
           <Route 
             exact path='/product/:id' 
             render={
-              props => <ProductPage {...props} isAuth={isAuthenticated} />
+              props => <ProductPage {...props} isReady={isReady} isAuth={isAuthenticated} />
             } 
           />
           <Route 
@@ -80,7 +80,7 @@ function App() {
                 isReady ? 
                 (
                   isAuthenticated ? 
-                  <Cart {...props} isAuth={isAuthenticated}/> : 
+                  <Cart {...props} isReady={isReady} isAuth={isAuthenticated}/> : 
                   <Redirect to='/login' />
                 ) :
                 <div>Loader placeholder</div>
@@ -93,7 +93,7 @@ function App() {
                 isReady ? 
                 (
                   isAuthenticated ?
-                  <Profile {...props} isAuth={isAuthenticated} setAuth={setAuth} /> :
+                  <Profile {...props} isReady={isReady} isAuth={isAuthenticated} setAuth={setAuth} /> :
                   <Redirect to='/login' />
                 ) :
                 <div>Loader placeholder</div>
@@ -106,7 +106,7 @@ function App() {
                 isReady ?
                 (
                   isAuthenticated ?
-                  <Announce {...props} isAuth={isAuthenticated} /> :
+                  <Announce {...props} isReady={isReady} isAuth={isAuthenticated} /> :
                   <Redirect to='/login' />
                 ) :
                 <div>Loader placeholder</div>
@@ -119,7 +119,7 @@ function App() {
                 isReady ? 
                 (
                   isAuthenticated ?
-                  <Purchases {...props} isAuth={isAuthenticated} /> :
+                  <Purchases {...props} isReady={isReady} isAuth={isAuthenticated} /> :
                   <Redirect to='/login' />
                 ) :
                 <div>Loader placeholder</div>

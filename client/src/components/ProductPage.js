@@ -6,7 +6,7 @@ import Header from './Header';
 import Footer from './Footer';
 import './Body.css';
 
-const ProductPage = ({ isAuth }) => {
+const ProductPage = ({ isReady, isAuth }) => {
     const [productData, setProductData] = useState({});
     const params = useParams();
 
@@ -84,7 +84,7 @@ const ProductPage = ({ isAuth }) => {
 
     return (
         <Fragment>
-            <Header isAuth={isAuth} />
+            <Header isReady={isReady} isAuth={isAuth} />
             <Container className='pageBody'>
                 <Row>
                     <Col sm={6}>

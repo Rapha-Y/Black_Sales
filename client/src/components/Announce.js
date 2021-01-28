@@ -5,7 +5,7 @@ import Header from './Header';
 import Footer from './Footer';
 import './Body.css';
 
-const Announce = ({ isAuth }) => {
+const Announce = ({ isReady, isAuth }) => {
     const [inputs, setInputs] = useState({
         name: '',
         price: '0',
@@ -76,7 +76,7 @@ const Announce = ({ isAuth }) => {
 
     return (
         <Fragment>
-            <Header isAuth={isAuth} />
+            <Header isReady={isReady} isAuth={isAuth} />
             <Container className='pageBody'>
                 <Form onSubmit={onSubmitForm}>
                     <Form.Group controlId='name'>

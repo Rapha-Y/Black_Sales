@@ -6,7 +6,7 @@ import Footer from './Footer';
 import './Body.css';
 import './Purchases.css';
 
-const Purchases = ({ isAuth }) => {
+const Purchases = ({ isReady, isAuth }) => {
     const [purchases, setPurchases] = useState([]);
     
     async function getPurchases() {
@@ -45,7 +45,7 @@ const Purchases = ({ isAuth }) => {
 
     return (
         <Fragment>
-            <Header isAuth={isAuth} />
+            <Header isReady={isReady} isAuth={isAuth} />
             <Container className='pageBody'>
                 {
                     purchases.length === 0 ?
