@@ -76,7 +76,7 @@ const Cart = ({ isReady, isAuth }) => {
             <Header isReady={isReady} isAuth={isAuth} />
             {
                 productsAreReady &&
-                <Container className='pageBody my-3'>
+                <Container className='pageBody pt-3 cartBody'>
                     <ListGroup>
                         {
                             products.length === 0 ? 
@@ -112,8 +112,8 @@ const Cart = ({ isReady, isAuth }) => {
                     </ListGroup>
                     {
                         products.length !== 0 &&
-                        <div className='cartBuyBtnContainer'>
-                            <Button className='btn-success cartBuyBtn mt-3' onClick={() => submitCart()}>
+                        <div className='mt-3 cartBuyBtnContainer'>
+                            <Button className='btn-success cartBuyBtn' onClick={() => submitCart()}>
                                 Confirm purchase
                             </Button>
                         </div>
