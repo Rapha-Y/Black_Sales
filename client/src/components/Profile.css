@@ -5,3 +5,11 @@
 .logOutBtn {
     float: right;
 }
+
+.logOutBtnContainer {
+    height: 38px;
+}
+
+.profileBody {
+    padding-bottom: 120px;
+}

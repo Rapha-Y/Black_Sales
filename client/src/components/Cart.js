@@ -112,7 +112,7 @@ const Cart = ({ isReady, isAuth }) => {
                     </ListGroup>
                     {
                         products.length !== 0 &&
-                        <div className='mt-3 cartBuyBtnContainer'>
+                        <div className='mt-4 cartBuyBtnContainer'>
                             <Button className='btn-success cartBuyBtn' onClick={() => submitCart()}>
                                 Confirm purchase
                             </Button>
