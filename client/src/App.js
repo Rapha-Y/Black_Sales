@@ -11,6 +11,7 @@ import Profile from './components/Profile';
 import Cart from './components/Cart';
 import Purchases from './components/Purchases';
 import DefaultLoading from './components/DefaultLoading';
+import AuthLoading from './components/AuthLoading';
 
 function App() {
   const [isReady, setIsReady] = useState(false);
@@ -66,7 +67,7 @@ function App() {
                   <Login {...props} setAuth={setAuth} /> :
                   <Redirect to='/' />
                 ) :
-                <div>Loader placeholder</div>
+                <AuthLoading />
             } 
           />
           <Route 
@@ -79,7 +80,7 @@ function App() {
                   <Register {...props} setAuth={setAuth} /> :
                   <Redirect to='/' />
                 ) :
-                <div>Loader placeholder</div>
+                <AuthLoading />
             } 
           />
           <Route 
