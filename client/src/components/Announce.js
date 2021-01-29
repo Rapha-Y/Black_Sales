@@ -78,7 +78,7 @@ const Announce = ({ isReady, isAuth }) => {
     return (
         <Fragment>
             <Header isReady={isReady} isAuth={isAuth} />
-            <Container className='pageBody my-3'>
+            <Container className='pageBody pt-3 announceBody'>
                 <Form onSubmit={onSubmitForm}>
                     <Form.Group controlId='name'>
                         <Form.Label>Product:</Form.Label>
@@ -143,9 +143,11 @@ const Announce = ({ isReady, isAuth }) => {
                             onChange={e => onChange(e)}
                         />
                     </Form.Group>
-                    <Button className='mt-2 announceBtn' variant='primary' type='submit'>
-                        Submit product
-                    </Button>
+                    <div className='mt-4 announceBtnSection'>
+                        <Button className='announceBtn' variant='primary' type='submit'>
+                            Submit product
+                        </Button>
+                    </div>
                 </Form>
             </Container>
             <Footer />

@@ -76,7 +76,7 @@ const Cart = ({ isReady, isAuth }) => {
             <Header isReady={isReady} isAuth={isAuth} />
             {
                 productsAreReady &&
-                <Container className='pageBody' className='my-3'>
+                <Container className='pageBody my-3'>
                     <ListGroup>
                         {
                             products.length === 0 ? 

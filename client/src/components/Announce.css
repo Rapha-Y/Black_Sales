@@ -1,3 +1,11 @@
 .announceBtn {
     float: right;
 }
+
+.announceBtnSection {
+    height: 38px;
+}
+
+.announceBody {
+    padding-bottom: 120px;
+}
