@@ -10,6 +10,7 @@ import Announce from './components/Announce';
 import Profile from './components/Profile';
 import Cart from './components/Cart';
 import Purchases from './components/Purchases';
+import DefaultLoading from './components/DefaultLoading';
 
 function App() {
   const [isReady, setIsReady] = useState(false);
@@ -97,7 +98,7 @@ function App() {
                   <Cart {...props} isReady={isReady} isAuth={isAuthenticated}/> : 
                   <Redirect to='/login' />
                 ) :
-                <div>Loader placeholder</div>
+                <DefaultLoading />
             } 
           />
           <Route
@@ -110,7 +111,7 @@ function App() {
                   <Profile {...props} isReady={isReady} isAuth={isAuthenticated} setAuth={setAuth} /> :
                   <Redirect to='/login' />
                 ) :
-                <div>Loader placeholder</div>
+                <DefaultLoading />
             }
           />
           <Route
@@ -123,7 +124,7 @@ function App() {
                   <Announce {...props} isReady={isReady} isAuth={isAuthenticated} /> :
                   <Redirect to='/login' />
                 ) :
-                <div>Loader placeholder</div>
+                <DefaultLoading />
             }
           />
           <Route
@@ -136,7 +137,7 @@ function App() {
                   <Purchases {...props} isReady={isReady} isAuth={isAuthenticated} /> :
                   <Redirect to='/login' />
                 ) :
-                <div>Loader placeholder</div>
+                <DefaultLoading />
             }
           />
         </Switch>
