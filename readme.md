@@ -1,10 +1,10 @@
 Mandatory:
 Fix site flick on load
+Add change passwords functionality
+Add success/failure messages for buttons
 
 Optional:
 Add pagination to products displayed - Needs bigger test sample.
-Remove edit buttons from profile - But allow user to change passwords.
-Disable ability to buy from yourself - Not relevant to the project, but would make sense if the site was real.
 
 Final touches:
 Refactor code (last step)

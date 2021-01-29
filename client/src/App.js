@@ -58,13 +58,27 @@ function App() {
           <Route 
             exact path='/login' 
             render={
-              props => <Login {...props} setAuth={setAuth} />
+              props =>
+                isReady ? 
+                (
+                  !isAuthenticated ? 
+                  <Login {...props} setAuth={setAuth} /> :
+                  <Redirect to='/' />
+                ) :
+                <div>Loader placeholder</div>
             } 
           />
           <Route 
             exact path='/register' 
             render={
-              props => <Register {...props} setAuth={setAuth} />
+              props =>
+                isReady ? 
+                (
+                  !isAuthenticated ? 
+                  <Register {...props} setAuth={setAuth} /> :
+                  <Redirect to='/' />
+                ) :
+                <div>Loader placeholder</div>
             } 
           />
           <Route 

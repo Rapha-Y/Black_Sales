@@ -24,8 +24,8 @@ const Profile = ({ isReady, isAuth, setAuth }) => {
             <Header isReady={isReady} isAuth={isAuth} />
             <Container className='pageBody pt-3 profileBody'>
                 <Form>
-                    <Form.Group>
-                        <Form.Label>Username:</Form.Label>
+                    <Form.Group style={{display: 'flex', alignItems: 'center'}}>
+                        <Form.Label className='mr-1' style={{width: '100px'}}>Username:</Form.Label>
                         <div className='input-group'>
                             <Form.Control
                                 type='text'
@@ -34,13 +34,10 @@ const Profile = ({ isReady, isAuth, setAuth }) => {
                                 disabled
                                 className='mr-2'
                             />
-                            <Button /*setInputs={setInputs}*/>
-                                Edit
-                            </Button>
                         </div>
                     </Form.Group>
-                    <Form.Group>
-                        <Form.Label>E-mail:</Form.Label>
+                    <Form.Group style={{display: 'flex', alignItems: 'center'}}>
+                        <Form.Label className='mr-1' style={{width: '100px'}}>E-mail:</Form.Label>
                         <div className='input-group'>
                             <Form.Control
                                 type='email'
@@ -49,27 +46,10 @@ const Profile = ({ isReady, isAuth, setAuth }) => {
                                 disabled
                                 className='mr-2'
                             />
-                            <Button /*setInputs={setInputs}*/>
-                                Edit
-                            </Button>
-                        </div>
-                    </Form.Group>
-                    <Form.Group>
-                        <Form.Label>Password:</Form.Label>
-                        <div className='input-group'>
-                            <Form.Control
-                                type='password'
-                                name='password'
-                                value={inputs.password}
-                                disabled
-                                className='mr-2'
-                            />
-                            <Button>
-                                Edit
-                            </Button>
                         </div>
                     </Form.Group>
                 </Form>
+                <a href='#'>Change password</a>
                 <div className='mt-4 logOutBtnContainer'>
                     <Button className='btn-danger logOutBtn' onClick={() => logOut()}>
                         Log out
