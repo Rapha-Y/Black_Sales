@@ -12,6 +12,7 @@ import Cart from './components/Cart';
 import Purchases from './components/Purchases';
 import DefaultLoading from './components/DefaultLoading';
 import AuthLoading from './components/AuthLoading';
+import NotFound from './components/NotFound';
 
 function App() {
   const [isReady, setIsReady] = useState(false);
@@ -137,6 +138,17 @@ function App() {
                   isAuthenticated ?
                   <Purchases {...props} isReady={isReady} isAuth={isAuthenticated} /> :
                   <Redirect to='/login' />
+                ) :
+                <DefaultLoading />
+            }
+          />
+          <Route 
+            path='/'
+            render={
+              props => 
+                isReady ?
+                (
+                  <NotFound {...props} isReady={isReady} isAuth={isAuthenticated} />
                 ) :
                 <DefaultLoading />
             }
