@@ -1,5 +1,4 @@
 Mandatory:
-Fix site flick on load
 Add change passwords functionality
 Add success/failure messages for buttons
 Add 404 page

@@ -9,9 +9,10 @@ import './ProductPage.css';
 
 const ProductPage = ({ isReady, isAuth }) => {
     const [productData, setProductData] = useState({});
+    const [infoIsReady, setInfoIsReady] = useState(false);
     const params = useParams();
 
-    async function getProduct(product_id) {
+    async function getProduct(product_id, setInfoIsReady) {
         try {
             const response = await fetch(
                 `http://localhost:5000/products/${product_id}`
@@ -20,6 +21,7 @@ const ProductPage = ({ isReady, isAuth }) => {
             const parseRes = await response.json();
 
             setProductData(parseRes);
+            setInfoIsReady(true);
         } catch (error) {
             console.log(error.message);
         }
@@ -70,8 +72,8 @@ const ProductPage = ({ isReady, isAuth }) => {
     };
 
     useEffect(() => {
-        getProduct(params.id);
-    }, [params.id]);
+        getProduct(params.id, setInfoIsReady);
+    }, [params.id, setInfoIsReady]);
 
     function getDate(dateString) {
         const date = new Date(dateString);
@@ -86,35 +88,38 @@ const ProductPage = ({ isReady, isAuth }) => {
     return (
         <Fragment>
             <Header isReady={isReady} isAuth={isAuth} />
-            <Container className='pageBody mt-3'>
-                <Row>
-                    <Col sm={7} className='mb-3'>
-                        <Image src={productData.product_image} fluid />
-                    </Col>
-                    <Col sm={5} className='mb-5 productInfoBox'>
-                        <h1>{productData.product_name}</h1>
-                        Published {getDate(productData.product_date)} by {productData.user_name}
-                        <div className='lineSeparator'>
-                            <hr />
-                        </div>
-                        <div style={{display: 'flex'}}>
-                            <div className='mr-2'>For:</div>
-                            <h2 className='mb-0 priceValue'>U${(productData.product_price / 100).toFixed(2)}</h2>
-                        </div>
-                        <div className='lineSeparator'>
-                            <hr />
-                        </div>
-                        <div>
-                            <Button variant='success' className='mr-2' onClick={() => addToCart()}>
-                                Add to cart
-                            </Button>
-                            <Button variant='danger' onClick={() => buyProductNow()}>
-                                Buy now!
-                            </Button>
-                        </div>
-                    </Col>
-                </Row>
-            </Container>
+            {
+                infoIsReady &&
+                <Container className='pageBody mt-3'>
+                    <Row>
+                        <Col sm={7} className='mb-3'>
+                            <Image src={productData.product_image} fluid />
+                        </Col>
+                        <Col sm={5} className='mb-5 productInfoBox'>
+                            <h1>{productData.product_name}</h1>
+                            Published {getDate(productData.product_date)} by {productData.user_name}
+                            <div className='lineSeparator'>
+                                <hr />
+                            </div>
+                            <div style={{display: 'flex'}}>
+                                <div className='mr-2'>For:</div>
+                                <h2 className='mb-0 priceValue'>U${(productData.product_price / 100).toFixed(2)}</h2>
+                            </div>
+                            <div className='lineSeparator'>
+                                <hr />
+                            </div>
+                            <div>
+                                <Button variant='success' className='mr-2' onClick={() => addToCart()}>
+                                    Add to cart
+                                </Button>
+                                <Button variant='danger' onClick={() => buyProductNow()}>
+                                    Buy now!
+                                </Button>
+                            </div>
+                        </Col>
+                    </Row>
+                </Container>
+            }
             <Footer />
         </Fragment>
     );
