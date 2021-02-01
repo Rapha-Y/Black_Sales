@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from 'react';
+import React, { Fragment, useState, useEffect } from 'react';
 import { Container, Form, Button } from 'react-bootstrap';
 
 import Header from './Header';
@@ -7,11 +7,30 @@ import './Body.css';
 import './Profile.css';
 
 const Profile = ({ isReady, isAuth, setAuth }) => {
-    const [inputs/*, setInputs*/] = useState({
-        name: 'Haachama', //fetch it
-        email: 'akai.haato@gmail.com', //fetch it
-        password: 'password' //no need to fetch
+    const [inputs, setInputs] = useState({
+        user_name: '',
+        user_email: ''
     });
+
+    async function getUserInfo() {
+        try {
+            const response = await fetch(
+                'http://localhost:5000/user',
+                {
+                    method: 'GET',
+                    headers: {
+                        token: localStorage.token
+                    }
+                }
+            );
+
+            const parseRes = await response.json();
+
+            setInputs(parseRes);
+        } catch (error) {
+            console.log(error.message);
+        }
+    }
 
     const [passwordInputsAreVisible, setPasswordInputsAreVisible] = useState(false);
 
@@ -36,6 +55,10 @@ const Profile = ({ isReady, isAuth, setAuth }) => {
         setAuth(false);
     };
 
+    useEffect(() => {
+        getUserInfo();
+    }, []);
+
     return (
         <Fragment>
             <Header isReady={isReady} isAuth={isAuth} />
@@ -47,7 +70,7 @@ const Profile = ({ isReady, isAuth, setAuth }) => {
                             <Form.Control
                                 type='text'
                                 name='name'
-                                value={inputs.name}
+                                value={inputs.user_name}
                                 disabled
                             />
                         </div>
@@ -58,7 +81,7 @@ const Profile = ({ isReady, isAuth, setAuth }) => {
                             <Form.Control
                                 type='email'
                                 name='email'
-                                value={inputs.email}
+                                value={inputs.user_email}
                                 disabled
                             />
                         </div>

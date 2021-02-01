@@ -8,6 +8,7 @@ app.use('/products', require('./routes/products'));
 app.use('/auth', require('./routes/auth'));
 app.use('/cart', require('./routes/cart'));
 app.use('/purchases', require('./routes/purchases'));
+app.use('/user', require('./routes/user'));
 
 const PORT = 5000;
 app.listen(PORT, () => {
