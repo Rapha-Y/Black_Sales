@@ -1,7 +1,6 @@
 Mandatory:
 Add change passwords functionality
 Add success/failure messages for buttons
-Add 404 page
 
 Optional:
 Add pagination to products displayed - Needs bigger test sample.

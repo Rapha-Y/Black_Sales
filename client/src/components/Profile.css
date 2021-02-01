@@ -2,11 +2,11 @@
     display: flex;
 }
 
-.logOutBtn {
+.profileBottomBtn {
     float: right;
 }
 
-.logOutBtnContainer {
+.profileBottomBtnContainer {
     height: 38px;
 }
 
