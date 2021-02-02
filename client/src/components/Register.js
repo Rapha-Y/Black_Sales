@@ -14,6 +14,13 @@ const Register = ({ setAuth }) => {
 
     const { name, email, password, confirmPassword } = inputs;
 
+    const [errors, setErrors] = useState({
+        nameError: null,
+        emailError: null,
+        passwordError: null,
+        confirmPasswordError: null
+    });
+
     const onChange = e => {
         setInputs({
             ...inputs,
@@ -25,11 +32,40 @@ const Register = ({ setAuth }) => {
         e.preventDefault();
 
         try {
-            //e-mail validation
-            //password validation
-            //matching passwords - ok
+            let nameError = null;
+            let emailError = null;
+            let passwordError = null;
+            let confirmPasswordError = null;
+
+            if (name.length < 3) {
+                nameError = 'Name must be longer than 2 characters';
+            } else if (name.length > 255) {
+                nameError = 'Name must be shorter than 256 characters';
+            }
+
+            if (email.length < 1) {
+                emailError = 'Field must not be empty'
+            } else if (email.length > 255) {
+                emailError = 'Email must be shorter than 256 characters';
+            }
+
+            if (password.length < 6) {
+                passwordError = 'Password must be longer than 5 characters';
+            } else if (password.length > 255) {
+                passwordError = 'Password must be shorter than 256 characters';
+            }
+
             if (password !== confirmPassword) {
-                console.log('Rewrite this error later');
+                confirmPasswordError = 'Passwords do not match';
+            }
+
+            if (
+                nameError !== null || 
+                emailError !== null || 
+                passwordError !== null || 
+                confirmPasswordError !== null
+            ) {
+                setErrors({ nameError, emailError, passwordError, confirmPasswordError });
                 return;
             }
 
@@ -56,6 +92,15 @@ const Register = ({ setAuth }) => {
                 window.location.href = 'http://localhost:3000'
             } else {
                 setAuth(false);
+                
+                if (parseRes === 'E-mail is already in use') {
+                    setErrors({
+                        nameError,
+                        emailError: parseRes,
+                        passwordError,
+                        confirmPasswordError
+                    });
+                }
             }
         } catch (error) {
             console.log(error.message);
@@ -78,6 +123,12 @@ const Register = ({ setAuth }) => {
                                         placeholder='Enter your username'
                                         onChange={e => onChange(e)}
                                     />
+                                    {
+                                        errors.nameError &&
+                                        <span className='text-danger inputErrorMsg'>
+                                            {errors.nameError}
+                                        </span>
+                                    }
                                 </Form.Group>
                                 <Form.Group controlId='email'>
                                     <Form.Label>E-mail:</Form.Label>
@@ -88,6 +139,12 @@ const Register = ({ setAuth }) => {
                                         placeholder='Enter your e-mail'
                                         onChange={e => onChange(e)}
                                     />
+                                    {
+                                        errors.emailError &&
+                                        <span className='text-danger inputErrorMsg'>
+                                            {errors.emailError}
+                                        </span>
+                                    }
                                 </Form.Group>
                                 <Form.Group controlId='password'>
                                     <Form.Label>Password:</Form.Label>
@@ -98,6 +155,12 @@ const Register = ({ setAuth }) => {
                                         placeholder='Enter your password'
                                         onChange={e => onChange(e)}
                                     />
+                                    {
+                                        errors.passwordError &&
+                                        <span className='text-danger inputErrorMsg'>
+                                            {errors.passwordError}
+                                        </span>
+                                    }
                                 </Form.Group>
                                 <Form.Group controlId='confirmPassword'>
                                     <Form.Label>Confirm password:</Form.Label>
@@ -108,6 +171,12 @@ const Register = ({ setAuth }) => {
                                         placeholder='Confirm your password'
                                         onChange={e => onChange(e)}
                                     />
+                                    {
+                                        errors.confirmPasswordError &&
+                                        <span className='text-danger inputErrorMsg'>
+                                            {errors.confirmPasswordError}
+                                        </span>
+                                    }
                                 </Form.Group>
                                 <Button className='mt-5' variant='primary' type='submit' block>
                                     Submit
