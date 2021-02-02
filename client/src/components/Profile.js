@@ -49,6 +49,38 @@ const Profile = ({ isReady, isAuth, setAuth }) => {
         });
     };
 
+    const onSubmitForm = async (e) => {
+        e.preventDefault();
+        
+        if (newPassword !== confirmPassword) {
+            console.log('Rewrite this error later');
+            return;
+        }
+
+        try {
+            const myHeaders = new Headers();
+            myHeaders.append('Content-Type', 'application/json');
+            myHeaders.append('token', localStorage.token);
+
+            const body = { currentPassword, newPassword };
+
+            const response = await fetch(
+                'http://localhost:5000/user',
+                {
+                    method: 'PUT',
+                    headers: myHeaders,
+                    body: JSON.stringify(body)
+                }
+            );
+
+            if (response.status === 200) {
+                setPasswordInputsAreVisible(false);
+            }
+        } catch(error) {
+            console.log(error.message);
+        }
+    }
+
     const logOut = () => {
         localStorage.removeItem('token');
 
@@ -110,7 +142,7 @@ const Profile = ({ isReady, isAuth, setAuth }) => {
                     (
                         <Fragment>
                             <hr className='mt-4' />
-                            <Form>
+                            <Form onSubmit={onSubmitForm}>
                                 <Form.Group style={{display: 'flex', alignItems: 'center'}}>
                                     <Form.Label className='mr-3' style={{width: '100px'}}>Current password:</Form.Label>
                                     <div className='input-group'>
@@ -147,15 +179,12 @@ const Profile = ({ isReady, isAuth, setAuth }) => {
                                         />
                                     </div>
                                 </Form.Group>
+                                <div className='mt-3 profileBottomBtnContainer'>
+                                    <Button className='profileBottomBtn' type='submit'>
+                                        Confirm changes
+                                    </Button>
+                                </div>
                             </Form>
-                            <div className='mt-3 profileBottomBtnContainer'>
-                                <Button 
-                                    className='profileBottomBtn' 
-                                    onClick={() => setPasswordInputsAreVisible(false)}
-                                >
-                                    Confirm changes
-                                </Button>
-                            </div>
                         </Fragment>
                     )
                 }

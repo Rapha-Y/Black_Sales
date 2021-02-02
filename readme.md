@@ -1,6 +1,7 @@
 Mandatory:
 Add change passwords functionality
 Add success/failure messages for buttons
+Add input validation
 
 Optional:
 Add pagination to products displayed - Needs bigger test sample.
