@@ -42,6 +42,12 @@ const Profile = ({ isReady, isAuth, setAuth }) => {
 
     const { currentPassword, newPassword, confirmPassword } = passwordInputs;
 
+    const [errors, setErrors] = useState({
+        currentPasswordError: null,
+        newPasswordError: null,
+        confirmPasswordError: null
+    });
+
     const onChange = e => {
         setPasswordInputs({
             ...passwordInputs,
@@ -52,8 +58,22 @@ const Profile = ({ isReady, isAuth, setAuth }) => {
     const onSubmitForm = async (e) => {
         e.preventDefault();
         
+        let currentPasswordError = null;
+        let newPasswordError = null;
+        let confirmPasswordError = null;
+
+        if (newPassword.length < 6) {
+            newPasswordError = 'The new password must be longer than 5 characters';
+        } else if (newPassword.length > 255) {
+            newPasswordError = 'The new password must be shorter than 256 characters';
+        }
+
         if (newPassword !== confirmPassword) {
-            console.log('Rewrite this error later');
+            confirmPasswordError = 'The new passwords do not match';
+        }
+
+        if (newPasswordError !== null || confirmPasswordError !== null) {
+            setErrors({ currentPasswordError, newPasswordError, confirmPasswordError });
             return;
         }
 
@@ -73,8 +93,14 @@ const Profile = ({ isReady, isAuth, setAuth }) => {
                 }
             );
 
-            if (response.status === 200) {
-                setPasswordInputsAreVisible(false);
+            if (response.status === 401) {
+                setErrors({ currentPasswordError, newPasswordError, confirmPasswordError });
+            } else if (response.status === 200) {
+                alert('Please log in with your new password');
+
+                localStorage.removeItem('token');
+
+                setAuth(false);
             }
         } catch(error) {
             console.log(error.message);
