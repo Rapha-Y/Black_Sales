@@ -125,9 +125,9 @@ const Register = ({ setAuth }) => {
                                     />
                                     {
                                         errors.nameError &&
-                                        <span className='text-danger inputErrorMsg'>
+                                        <Form.Text className='text-danger'>
                                             {errors.nameError}
-                                        </span>
+                                        </Form.Text>
                                     }
                                 </Form.Group>
                                 <Form.Group controlId='email'>
@@ -141,9 +141,9 @@ const Register = ({ setAuth }) => {
                                     />
                                     {
                                         errors.emailError &&
-                                        <span className='text-danger inputErrorMsg'>
+                                        <Form.Text className='text-danger'>
                                             {errors.emailError}
-                                        </span>
+                                        </Form.Text>
                                     }
                                 </Form.Group>
                                 <Form.Group controlId='password'>
@@ -157,9 +157,9 @@ const Register = ({ setAuth }) => {
                                     />
                                     {
                                         errors.passwordError &&
-                                        <span className='text-danger inputErrorMsg'>
+                                        <Form.Text className='text-danger'>
                                             {errors.passwordError}
-                                        </span>
+                                        </Form.Text>
                                     }
                                 </Form.Group>
                                 <Form.Group controlId='confirmPassword'>
@@ -173,9 +173,9 @@ const Register = ({ setAuth }) => {
                                     />
                                     {
                                         errors.confirmPasswordError &&
-                                        <span className='text-danger inputErrorMsg'>
+                                        <Form.Text className='text-danger'>
                                             {errors.confirmPasswordError}
-                                        </span>
+                                        </Form.Text>
                                     }
                                 </Form.Group>
                                 <Button className='mt-5' variant='primary' type='submit' block>

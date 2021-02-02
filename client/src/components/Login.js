@@ -74,9 +74,9 @@ const Login = ({ setAuth }) => {
                                     />
                                     {
                                         error === 'No users are registered under this e-mail' &&
-                                        <span className='text-danger inputErrorMsg'>
+                                        <Form.Text className='text-danger'>
                                             {error}
-                                        </span>
+                                        </Form.Text>
                                     }
                                 </Form.Group>
                                 <Form.Group controlId='password'>
@@ -90,9 +90,9 @@ const Login = ({ setAuth }) => {
                                     />
                                     {
                                         error === 'Incorrect password' &&
-                                        <span className='text-danger inputErrorMsg'>
+                                        <Form.Text className='text-danger'>
                                             {error}
-                                        </span>
+                                        </Form.Text>
                                     }
                                 </Form.Group>
                                 <Button className='mt-5' variant='primary' type='submit' block>
