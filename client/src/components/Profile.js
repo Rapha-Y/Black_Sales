@@ -179,10 +179,19 @@ const Profile = ({ isReady, isAuth, setAuth }) => {
                                         />
                                     </div>
                                 </Form.Group>
-                                <div className='mt-3 profileBottomBtnContainer'>
-                                    <Button className='profileBottomBtn' type='submit'>
+                                <div className='profileBottomBtnContainer'>
+                                    <div className='profileBottomBtn'>
+                                    <Button 
+                                        className='mr-2' 
+                                        variant='link' 
+                                        onClick={() => setPasswordInputsAreVisible(false)}
+                                    >
+                                        Cancel
+                                    </Button>
+                                    <Button type='submit'>
                                         Confirm changes
                                     </Button>
+                                    </div>
                                 </div>
                             </Form>
                         </Fragment>

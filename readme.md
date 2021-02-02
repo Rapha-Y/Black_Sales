@@ -1,5 +1,4 @@
 Mandatory:
-Add change passwords functionality
 Add success/failure messages for buttons
 Add input validation
 
