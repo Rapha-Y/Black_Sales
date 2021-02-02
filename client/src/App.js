@@ -1,6 +1,8 @@
 import React, { Fragment, useEffect, useState } from 'react';
 import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 import Home from './components/Home';
 import Login from './components/Login';
@@ -13,6 +15,8 @@ import Purchases from './components/Purchases';
 import DefaultLoading from './components/DefaultLoading';
 import AuthLoading from './components/AuthLoading';
 import NotFound from './components/NotFound';
+
+toast.configure();
 
 function App() {
   const [isReady, setIsReady] = useState(false);

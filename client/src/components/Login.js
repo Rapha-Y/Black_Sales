@@ -12,6 +12,8 @@ const Login = ({ setAuth }) => {
 
     const { email, password } = inputs;
 
+    const [error, setError] = useState(null);
+
     const onChange = e => {
         setInputs({
             ...inputs,
@@ -46,6 +48,8 @@ const Login = ({ setAuth }) => {
                 window.location.href = 'http://localhost:3000';
             } else {
                 setAuth(false);
+
+                setError(parseRes);
             }
         } catch (error) {
             console.log(error.message);
@@ -68,6 +72,12 @@ const Login = ({ setAuth }) => {
                                         placeholder='Enter your e-mail' 
                                         onChange={e => onChange(e)}
                                     />
+                                    {
+                                        error === 'No users are registered under this e-mail' &&
+                                        <span className='text-danger inputErrorMsg'>
+                                            {error}
+                                        </span>
+                                    }
                                 </Form.Group>
                                 <Form.Group controlId='password'>
                                     <Form.Label>Password:</Form.Label>
@@ -78,6 +88,12 @@ const Login = ({ setAuth }) => {
                                         placeholder='Enter your password'
                                         onChange={e => onChange(e)}
                                     />
+                                    {
+                                        error === 'Incorrect password' &&
+                                        <span className='text-danger inputErrorMsg'>
+                                            {error}
+                                        </span>
+                                    }
                                 </Form.Group>
                                 <Button className='mt-5' variant='primary' type='submit' block>
                                     Submit
