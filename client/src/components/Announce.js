@@ -1,5 +1,5 @@
 import React, { Fragment, useState } from 'react';
-import { Container, Form, Button } from 'react-bootstrap';
+import { Container, Form, Button, Row, Col } from 'react-bootstrap';
 
 import Header from './Header';
 import Footer from './Footer';
@@ -80,68 +80,76 @@ const Announce = ({ isReady, isAuth }) => {
             <Header isReady={isReady} isAuth={isAuth} />
             <Container className='pageBody pt-3 announceBody'>
                 <Form onSubmit={onSubmitForm}>
-                    <Form.Group controlId='name'>
-                        <Form.Label>Product:</Form.Label>
-                        <Form.Control 
-                            type='text' 
-                            name='name'
-                            value={name}
-                            placeholder='Enter the product name' 
-                            onChange={e => onChange(e)}
-                        />
-                        {
-                            errors.nameError !== '' && 
-                            <Form.Text className='text-danger'>
-                                {errors.nameError}
-                            </Form.Text>
-                        }
+                    <Form.Group as={Row} controlId='name'>
+                        <Form.Label column sm={2}>Product name:</Form.Label>
+                        <Col sm={10}>
+                            <Form.Control
+                                type='text'
+                                name='name'
+                                value={name}
+                                placeholder='Enter the product name'
+                                onChange={e => onChange(e)}
+                            />
+                            {
+                                errors.nameError !== '' && 
+                                <Form.Text className='text-danger'>
+                                    {errors.nameError}
+                                </Form.Text>
+                            }
+                        </Col>
                     </Form.Group>
-                    <Form.Group controlId='price'>
-                        <Form.Label>Price:</Form.Label>
-                        <Form.Control 
-                            type='number'
-                            name='price'
-                            value={price}
-                            step={0.01}
-                            placeholder='Enter the price'
-                            onChange={e => onChange(e)}
-                        />
-                        {
-                            errors.priceError !== '' && 
-                            <Form.Text className='text-danger'>
-                                {errors.priceError}
-                            </Form.Text>
-                        }
+                    <Form.Group as={Row} controlId='price'>
+                        <Form.Label column sm={2}>Unit price:</Form.Label>
+                        <Col sm={10}>
+                            <Form.Control
+                                type='number'
+                                name='price'
+                                value={price}
+                                step={0.01}
+                                placeholder='Enter the product price'
+                                onChange={e => onChange(e)}
+                            />
+                            {
+                                errors.priceError !== '' && 
+                                <Form.Text className='text-danger'>
+                                    {errors.priceError}
+                                </Form.Text>
+                            }
+                        </Col>
                     </Form.Group>
-                    <Form.Group controlId='category'>
-                        <Form.Label>Category:</Form.Label>
-                        <Form.Control 
-                            as='select'
-                            name='category'
-                            value={category}
-                            onChange={e => onChange(e)}
-                        >
-                            <option>Automotive</option>
-                            <option>Books</option>
-                            <option>Fashion</option>
-                            <option>Electronics</option>
-                            <option>Games</option>
-                            <option>Home</option>
-                            <option>Media</option>
-                            <option>Toys</option>
-                            <option>Sports</option>
-                            <option>Tools</option>
-                        </Form.Control>
+                    <Form.Group as={Row} controlId='category'>
+                        <Form.Label column sm={2}>Category:</Form.Label>
+                        <Col sm={10}>
+                            <Form.Control 
+                                as='select'
+                                name='category'
+                                value={category}
+                                onChange={e => onChange(e)}
+                            >
+                                <option>Automotive</option>
+                                <option>Books</option>
+                                <option>Fashion</option>
+                                <option>Electronics</option>
+                                <option>Games</option>
+                                <option>Home</option>
+                                <option>Media</option>
+                                <option>Toys</option>
+                                <option>Sports</option>
+                                <option>Tools</option>
+                            </Form.Control>
+                        </Col>
                     </Form.Group>
-                    <Form.Group controlId='image'>
-                        <Form.Label>Image URL:</Form.Label>
-                        <Form.Control 
-                            type='text' 
-                            name='image'
-                            value={image}
-                            placeholder='Enter the image URL' 
-                            onChange={e => onChange(e)}
-                        />
+                    <Form.Group as={Row} controlId='image'>
+                        <Form.Label column sm={2}>Image URL:</Form.Label>
+                        <Col sm={10}>
+                            <Form.Control 
+                                type='text' 
+                                name='image'
+                                value={image}
+                                placeholder='Enter the image URL' 
+                                onChange={e => onChange(e)}
+                            />
+                        </Col>
                     </Form.Group>
                     <div className='mt-4 announceBtnSection'>
                         <Button className='announceBtn' variant='primary' type='submit'>
