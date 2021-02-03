@@ -54,7 +54,7 @@ router.post('/login', async (req, res) => {
         );
 
         if (user.rows.length === 0) {
-            return res.status(401).json('No user is registered under this e-mail');
+            return res.status(401).json('No users are registered under this e-mail');
         }
 
         const passwordMatches = await bcrypt.compare(password, user.rows[0].user_password);

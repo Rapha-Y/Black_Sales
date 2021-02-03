@@ -1,5 +1,5 @@
 import React, { Fragment, useState, useEffect } from 'react';
-import { Container, Form, Button } from 'react-bootstrap';
+import { Container, Form, Button, Row, Col } from 'react-bootstrap';
 
 import Header from './Header';
 import Footer from './Footer';
@@ -94,6 +94,8 @@ const Profile = ({ isReady, isAuth, setAuth }) => {
             );
 
             if (response.status === 401) {
+                currentPasswordError = 'Incorrect password';
+
                 setErrors({ currentPasswordError, newPasswordError, confirmPasswordError });
             } else if (response.status === 200) {
                 alert('Please log in with your new password');
@@ -122,27 +124,27 @@ const Profile = ({ isReady, isAuth, setAuth }) => {
             <Header isReady={isReady} isAuth={isAuth} />
             <Container className='pageBody pt-3 profileBody'>
                 <Form>
-                    <Form.Group style={{display: 'flex', alignItems: 'center'}}>
-                        <Form.Label className='mr-3' style={{width: '100px'}}>Username:</Form.Label>
-                        <div className='input-group'>
+                    <Form.Group as={Row}>
+                        <Form.Label column sm={2}>Username:</Form.Label>
+                        <Col sm={10}>
                             <Form.Control
                                 type='text'
                                 name='name'
                                 value={inputs.user_name}
                                 disabled
                             />
-                        </div>
+                        </Col>
                     </Form.Group>
-                    <Form.Group style={{display: 'flex', alignItems: 'center'}}>
-                        <Form.Label className='mr-3' style={{width: '100px'}}>E-mail:</Form.Label>
-                        <div className='input-group'>
+                    <Form.Group as={Row}>
+                        <Form.Label column sm={2}>E-mail:</Form.Label>
+                        <Col sm={10}>
                             <Form.Control
                                 type='email'
                                 name='email'
                                 value={inputs.user_email}
                                 disabled
                             />
-                        </div>
+                        </Col>
                     </Form.Group>
                 </Form>
                 {
@@ -169,9 +171,9 @@ const Profile = ({ isReady, isAuth, setAuth }) => {
                         <Fragment>
                             <hr className='mt-4' />
                             <Form onSubmit={onSubmitForm}>
-                                <Form.Group style={{display: 'flex', alignItems: 'center'}}>
-                                    <Form.Label className='mr-3' style={{width: '100px'}}>Current password:</Form.Label>
-                                    <div className='input-group'>
+                                <Form.Group as={Row}>
+                                    <Form.Label column sm={2}>Current password:</Form.Label>
+                                    <Col sm={10}>
                                         <Form.Control
                                             type='password'
                                             name='currentPassword'
@@ -179,11 +181,17 @@ const Profile = ({ isReady, isAuth, setAuth }) => {
                                             placeholder='Enter your current password'
                                             onChange={e => onChange(e)}
                                         />
-                                    </div>
+                                        {
+                                            errors.currentPasswordError &&
+                                            <Form.Text className='text-danger'>
+                                                {errors.currentPasswordError}
+                                            </Form.Text>
+                                        }
+                                    </Col>
                                 </Form.Group>
-                                <Form.Group style={{display: 'flex', alignItems: 'center'}}>
-                                    <Form.Label className='mr-3' style={{width: '100px'}}>New password:</Form.Label>
-                                    <div className='input-group'>
+                                <Form.Group as={Row}>
+                                    <Form.Label column sm={2}>New password:</Form.Label>
+                                    <Col sm={10}>
                                         <Form.Control
                                             type='password'
                                             name='newPassword'
@@ -191,11 +199,17 @@ const Profile = ({ isReady, isAuth, setAuth }) => {
                                             placeholder='Enter your new password'
                                             onChange={e => onChange(e)}
                                         />
-                                    </div>
+                                        {
+                                            errors.newPasswordError &&
+                                            <Form.Text className='text-danger'>
+                                                {errors.newPasswordError}
+                                            </Form.Text>
+                                        }
+                                    </Col>
                                 </Form.Group>
-                                <Form.Group style={{display: 'flex', alignItems: 'center'}}>
-                                    <Form.Label className='mr-3' style={{width: '100px'}}>Confirm new password:</Form.Label>
-                                    <div className='input-group'>
+                                <Form.Group as={Row}>
+                                    <Form.Label column sm={2}>Confirm new password:</Form.Label>
+                                    <Col sm={10}>
                                         <Form.Control
                                             type='password'
                                             name='confirmPassword'
@@ -203,7 +217,13 @@ const Profile = ({ isReady, isAuth, setAuth }) => {
                                             placeholder='Confirm your new password'
                                             onChange={e => onChange(e)}
                                         />
-                                    </div>
+                                        {
+                                            errors.confirmPasswordError &&
+                                            <Form.Text className='text-danger'>
+                                                {errors.confirmPasswordError}
+                                            </Form.Text>
+                                        }
+                                    </Col>
                                 </Form.Group>
                                 <div className='profileBottomBtnContainer'>
                                     <div className='profileBottomBtn'>
