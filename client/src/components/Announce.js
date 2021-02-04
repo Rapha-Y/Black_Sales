@@ -16,7 +16,8 @@ const Announce = ({ isReady, isAuth }) => {
 
     const [errors, setErrors] = useState({
         nameError: '',
-        priceError: ''
+        priceError: '',
+        imageError: ''
     });
 
     const { name, price, category, image } = inputs;
@@ -34,6 +35,7 @@ const Announce = ({ isReady, isAuth }) => {
         try {
             let nameError = '';
             let priceError = '';
+            let imageError = '';
 
             if (inputs.name === '') {
                 nameError = 'Product must have a name';
@@ -50,8 +52,14 @@ const Announce = ({ isReady, isAuth }) => {
                 priceError = 'Product must have a maximum of two decimals';
             }
 
-            if (nameError !== '' || priceError !== '') {
-                setErrors({ nameError, priceError });
+            let imageUrl = new Image();
+            imageUrl.src = inputs.image;
+            if (imageUrl.height !== 720 || imageUrl.width !== 1280) {
+                imageError = 'Image must have exact 1280 x 720 pixels as its dimensions'
+            }
+
+            if (nameError !== '' || priceError !== '' || imageError !== '') {
+                setErrors({ nameError, priceError, imageError });
             } else {
                 const myHeaders = new Headers();
                 myHeaders.append('Content-Type', 'application/json');
@@ -149,6 +157,12 @@ const Announce = ({ isReady, isAuth }) => {
                                 placeholder='Enter the image URL' 
                                 onChange={e => onChange(e)}
                             />
+                            {
+                                errors.imageError !== '' && 
+                                <Form.Text className='text-danger'>
+                                    {errors.imageError}
+                                </Form.Text>
+                            }
                         </Col>
                     </Form.Group>
                     <div className='mt-4 announceBtnSection'>
