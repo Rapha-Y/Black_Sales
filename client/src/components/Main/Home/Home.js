@@ -1,10 +1,10 @@
 import React, { Fragment, useState } from 'react';
 
-import Header from './Shared/Header';
+import Header from '../Shared/Header';
 import FilterMenu from './FilterMenu';
 import ProductList from './ProductList';
-import Footer from './Shared/Footer';
-import '../Body.css';
+import Footer from '../Shared/Footer';
+import '../../Body.css';
 
 const Home = ({ isReady, isAuth }) => {
     const [searchText, setSearchText] = useState('');

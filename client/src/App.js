@@ -7,7 +7,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import Login from './components/Auth/Login';
 import Register from './components/Auth/Register';
 import AuthLoading from './components/Auth/AuthLoading';
-import Home from './components/Main/Home';
+import Home from './components/Main/Home/Home';
 import ProductPage from './components/Main/ProductPage';
 import Profile from './components/Main/Profile';
 import Announce from './components/Main/Announce';
