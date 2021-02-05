@@ -4,28 +4,30 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
+import Login from './components/Auth/Login';
+import Register from './components/Auth/Register';
+import AuthLoading from './components/Auth/AuthLoading';
 import Home from './components/Home';
-import Login from './components/Login';
-import Register from './components/Register';
 import ProductPage from './components/ProductPage';
 import Announce from './components/Announce';
 import Profile from './components/Profile';
 import Cart from './components/Cart';
 import Purchases from './components/Purchases';
 import DefaultLoading from './components/DefaultLoading';
-import AuthLoading from './components/AuthLoading';
 import NotFound from './components/NotFound';
 
 toast.configure();
 
 function App() {
+  //state to check if user has been identified as valid or invalid already
   const [isReady, setIsReady] = useState(false);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
 
   const setAuth = (boolean) => {
     setIsAuthenticated(boolean);
-  }
+  };
 
+  // verifies if user is logged in
   async function isAuth() {
     try {
       const response = await fetch(

@@ -1,7 +1,7 @@
 import React, { Fragment, useState } from 'react';
 import { Container, Form, Button, Card } from 'react-bootstrap';
 
-import './Body.css';
+import '../Body.css';
 import './Login.css';
 
 const Login = ({ setAuth }) => {

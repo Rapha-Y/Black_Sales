@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react';
 
-import './Body.css';
+import '../Body.css';
 
 const DefaultLoading = () => {
     return (
