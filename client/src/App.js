@@ -9,10 +9,10 @@ import Register from './components/Auth/Register';
 import AuthLoading from './components/Auth/AuthLoading';
 import Home from './components/Main/Home';
 import ProductPage from './components/Main/ProductPage';
-import Announce from './components/Main/Announce';
 import Profile from './components/Main/Profile';
-import Cart from './components/Main/Cart';
+import Announce from './components/Main/Announce';
 import Purchases from './components/Main/Purchases';
+import Cart from './components/Main/Cart';
 import DefaultLoading from './components/Main/DefaultLoading';
 import NotFound from './components/Main/NotFound';
 

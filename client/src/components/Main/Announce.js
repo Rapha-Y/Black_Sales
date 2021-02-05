@@ -1,8 +1,8 @@
 import React, { Fragment, useState } from 'react';
 import { Container, Form, Button, Row, Col } from 'react-bootstrap';
 
-import Header from './Header';
-import Footer from './Footer';
+import Header from './Shared/Header';
+import Footer from './Shared/Footer';
 import '../Body.css';
 import './Announce.css';
 
