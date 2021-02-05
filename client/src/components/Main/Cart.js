@@ -3,7 +3,7 @@ import { Container, ListGroup, Button } from 'react-bootstrap';
 
 import Header from './Header';
 import Footer from './Footer';
-import './Body.css';
+import '../Body.css';
 import './Cart.css';
 
 const Cart = ({ isReady, isAuth }) => {

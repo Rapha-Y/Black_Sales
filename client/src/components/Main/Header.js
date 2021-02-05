@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react';
 import { Navbar, Nav } from 'react-bootstrap';
 
-import Logo from '../icons/treasure.svg';
+import Logo from '../../icons/treasure.svg';
 
 const Header = ({ isReady, isAuth }) => {
     return (

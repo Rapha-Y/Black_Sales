@@ -4,7 +4,7 @@ import { Container, Image, Col, Row, Button } from 'react-bootstrap';
 
 import Header from './Header';
 import Footer from './Footer';
-import './Body.css';
+import '../Body.css';
 import './ProductPage.css';
 
 const ProductPage = ({ isReady, isAuth }) => {
