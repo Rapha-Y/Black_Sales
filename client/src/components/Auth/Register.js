@@ -12,8 +12,6 @@ const Register = ({ setAuth }) => {
         confirmPassword: ''
     });
 
-    const { name, email, password, confirmPassword } = inputs;
-
     const [errors, setErrors] = useState({
         nameError: null,
         emailError: null,
@@ -21,7 +19,10 @@ const Register = ({ setAuth }) => {
         confirmPasswordError: null
     });
 
+    const { name, email, password, confirmPassword } = inputs;
+
     const onChange = e => {
+        //update inputs
         setInputs({
             ...inputs,
             [e.target.name]: e.target.value
@@ -65,6 +66,7 @@ const Register = ({ setAuth }) => {
                 passwordError !== null || 
                 confirmPasswordError !== null
             ) {
+                //update errors
                 setErrors({ nameError, emailError, passwordError, confirmPasswordError });
                 return;
             }
@@ -85,12 +87,14 @@ const Register = ({ setAuth }) => {
             const parseRes = await response.json();
 
             if (parseRes.token) {
+                //log user in then redirect to home page
                 localStorage.setItem('token', parseRes.token);
 
                 setAuth(true);
 
                 window.location.href = 'http://localhost:3000'
             } else {
+                //update errors
                 setAuth(false);
                 
                 if (parseRes === 'E-mail is already in use') {

@@ -10,11 +10,15 @@ const Login = ({ setAuth }) => {
         password: ''
     });
 
+    const [errors, setErrors] = useState({
+        emailError: null,
+        passwordError: null
+    });
+
     const { email, password } = inputs;
 
-    const [error, setError] = useState(null);
-
     const onChange = e => {
+        //update inputs
         setInputs({
             ...inputs,
             [e.target.name]: e.target.value
@@ -41,15 +45,26 @@ const Login = ({ setAuth }) => {
             const parseRes = await response.json();
 
             if (parseRes.token) {
+                //log user in then redirect to home page
                 localStorage.setItem('token', parseRes.token);
 
                 setAuth(true);
 
                 window.location.href = 'http://localhost:3000';
             } else {
+                //update errors
                 setAuth(false);
 
-                setError(parseRes);
+                var emailError = null;
+                var passwordError = null;
+
+                if (parseRes === 'No users are registered under this e-mail') {
+                    emailError = parseRes;
+                } else if (parseRes === 'Incorrect password') {
+                    passwordError = parseRes;
+                }
+
+                setErrors({ emailError, passwordError });
             }
         } catch (error) {
             console.log(error.message);
@@ -73,9 +88,9 @@ const Login = ({ setAuth }) => {
                                         onChange={e => onChange(e)}
                                     />
                                     {
-                                        error === 'No users are registered under this e-mail' &&
+                                        errors.emailError &&
                                         <Form.Text className='text-danger'>
-                                            {error}
+                                            {errors.emailError}
                                         </Form.Text>
                                     }
                                 </Form.Group>
@@ -89,9 +104,9 @@ const Login = ({ setAuth }) => {
                                         onChange={e => onChange(e)}
                                     />
                                     {
-                                        error === 'Incorrect password' &&
+                                        errors.passwordError &&
                                         <Form.Text className='text-danger'>
-                                            {error}
+                                            {errors.passwordError}
                                         </Form.Text>
                                     }
                                 </Form.Group>
