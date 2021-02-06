@@ -12,8 +12,25 @@ const Profile = ({ isReady, isAuth, setAuth }) => {
         user_email: ''
     });
 
+    const [passwordInputsAreVisible, setPasswordInputsAreVisible] = useState(false);
+
+    const [passwordInputs, setPasswordInputs] = useState({
+        currentPassword: '',
+        newPassword: '',
+        confirmPassword: ''
+    });
+
+    const [errors, setErrors] = useState({
+        currentPasswordError: null,
+        newPasswordError: null,
+        confirmPasswordError: null
+    });
+
+    const { currentPassword, newPassword, confirmPassword } = passwordInputs;
+
     async function getUserInfo() {
         try {
+            //update username and e-mail
             const response = await fetch(
                 'http://localhost:5000/user',
                 {
@@ -32,23 +49,8 @@ const Profile = ({ isReady, isAuth, setAuth }) => {
         }
     }
 
-    const [passwordInputsAreVisible, setPasswordInputsAreVisible] = useState(false);
-
-    const [passwordInputs, setPasswordInputs] = useState({
-        currentPassword: '',
-        newPassword: '',
-        confirmPassword: ''
-    });
-
-    const { currentPassword, newPassword, confirmPassword } = passwordInputs;
-
-    const [errors, setErrors] = useState({
-        currentPasswordError: null,
-        newPasswordError: null,
-        confirmPasswordError: null
-    });
-
     const onChange = e => {
+        //update password inputs
         setPasswordInputs({
             ...passwordInputs,
             [e.target.name]: e.target.value
@@ -73,11 +75,13 @@ const Profile = ({ isReady, isAuth, setAuth }) => {
         }
 
         if (newPasswordError !== null || confirmPasswordError !== null) {
+            //update errors
             setErrors({ currentPasswordError, newPasswordError, confirmPasswordError });
             return;
         }
 
         try {
+            //try to change password
             const myHeaders = new Headers();
             myHeaders.append('Content-Type', 'application/json');
             myHeaders.append('token', localStorage.token);
@@ -94,10 +98,12 @@ const Profile = ({ isReady, isAuth, setAuth }) => {
             );
 
             if (response.status === 401) {
+                //update errors
                 currentPasswordError = 'Incorrect password';
 
                 setErrors({ currentPasswordError, newPasswordError, confirmPasswordError });
             } else if (response.status === 200) {
+                //log user out
                 alert('Please log in with your new password');
 
                 localStorage.removeItem('token');
@@ -110,6 +116,7 @@ const Profile = ({ isReady, isAuth, setAuth }) => {
     }
 
     const logOut = () => {
+        //log user out
         localStorage.removeItem('token');
 
         setAuth(false);

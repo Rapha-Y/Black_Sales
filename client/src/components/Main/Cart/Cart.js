@@ -1,9 +1,10 @@
 import React, { Fragment, useState, useEffect } from 'react';
 import { Container, ListGroup, Button } from 'react-bootstrap';
 
-import Header from './Shared/Header';
-import Footer from './Shared/Footer';
-import '../Body.css';
+import Header from '../Shared/Header';
+import Footer from '../Shared/Footer';
+import CartItem from './CartItem';
+import '../../Body.css';
 import './Cart.css';
 
 const Cart = ({ isReady, isAuth }) => {
@@ -12,6 +13,7 @@ const Cart = ({ isReady, isAuth }) => {
 
     async function getProducts(setProductsAreReady) {
         try {
+            //get product list
             const response = await fetch(
                 'http://localhost:5000/cart',
                 {
@@ -33,6 +35,7 @@ const Cart = ({ isReady, isAuth }) => {
 
     async function deleteProduct(id) {
         try {
+            //delete a product
             await fetch(
                 `http://localhost:5000/cart/item/${id}`,
                 {
@@ -51,6 +54,7 @@ const Cart = ({ isReady, isAuth }) => {
 
     async function submitCart() {
         try {
+            //order products in cart
             await fetch(
                 'http://localhost:5000/cart',
                 {
@@ -89,23 +93,13 @@ const Cart = ({ isReady, isAuth }) => {
                             ) :
                             (
                                 products.map(product =>
-                                    <ListGroup.Item key={product.product_id} className='cartItem'>
-                                        <div>
-                                            {product.product_name}
-                                        </div>
-                                        <div>
-                                            U${(product.product_price / 100).toFixed(2)}
-                                            <Button 
-                                                aria-label='Close' 
-                                                className='ml-3' 
-                                                variant='danger' 
-                                                size='sm'
-                                                onClick={() => deleteProduct(product.product_id)}
-                                            >
-                                                <span aria-hidden='true'>&times;</span>
-                                            </Button>
-                                        </div>
-                                    </ListGroup.Item>
+                                    <CartItem
+                                        key={product.product_id}
+                                        id={product.product_id}
+                                        name={product.product_name}
+                                        price={product.product_price}
+                                        onDelete={deleteProduct}
+                                    />
                                 )
                             )
                         }

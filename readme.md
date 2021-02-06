@@ -1,3 +1,16 @@
 Final touches:
-Refactor code (last step)
+Refactor code {
+    Profile {
+        Static Inputs
+        Dynamic Inputs
+    }
+    Purchases {
+        Order {
+            Product
+        }
+    }
+    Cart {
+        Product
+    }
+}
 Write readme (actual last step)

@@ -15,14 +15,15 @@ const Announce = ({ isReady, isAuth }) => {
     });
 
     const [errors, setErrors] = useState({
-        nameError: '',
-        priceError: '',
-        imageError: ''
+        nameError: null,
+        priceError: null,
+        imageError: null
     });
 
     const { name, price, category, image } = inputs;
 
     const onChange = e => {
+        //update inputs
         setInputs({
             ...inputs,
             [e.target.name]: e.target.value
@@ -33,17 +34,17 @@ const Announce = ({ isReady, isAuth }) => {
         e.preventDefault();
         
         try {
-            let nameError = '';
-            let priceError = '';
-            let imageError = '';
+            let nameError = null;
+            let priceError = null;
+            let imageError = null;
 
-            if (inputs.name === '') {
+            if (name === '') {
                 nameError = 'Product must have a name';
-            } else if (inputs.name.length > 255) {
+            } else if (name.length > 255) {
                 nameError = 'Product name must be under 255 characters';
             }
     
-            const priceValue = parseFloat(inputs.price);
+            const priceValue = parseFloat(price);
             if (priceValue <= 0) {
                 priceError = 'Product price must be greater than 0'
             } else if (priceValue > 1000000) {
@@ -53,14 +54,16 @@ const Announce = ({ isReady, isAuth }) => {
             }
 
             let imageUrl = new Image();
-            imageUrl.src = inputs.image;
+            imageUrl.src = image;
             if (imageUrl.height !== 720 || imageUrl.width !== 1280) {
                 imageError = 'Image must have exact 1280 x 720 pixels as its dimensions'
             }
 
-            if (nameError !== '' || priceError !== '' || imageError !== '') {
+            if (nameError !== null || priceError !== null || imageError !== null) {
+                //update errors
                 setErrors({ nameError, priceError, imageError });
             } else {
+                //add product and redirect to home page
                 const myHeaders = new Headers();
                 myHeaders.append('Content-Type', 'application/json');
                 myHeaders.append('token', localStorage.token);
@@ -99,7 +102,7 @@ const Announce = ({ isReady, isAuth }) => {
                                 onChange={e => onChange(e)}
                             />
                             {
-                                errors.nameError !== '' && 
+                                errors.nameError && 
                                 <Form.Text className='text-danger'>
                                     {errors.nameError}
                                 </Form.Text>
@@ -118,7 +121,7 @@ const Announce = ({ isReady, isAuth }) => {
                                 onChange={e => onChange(e)}
                             />
                             {
-                                errors.priceError !== '' && 
+                                errors.priceError && 
                                 <Form.Text className='text-danger'>
                                     {errors.priceError}
                                 </Form.Text>
@@ -158,7 +161,7 @@ const Announce = ({ isReady, isAuth }) => {
                                 onChange={e => onChange(e)}
                             />
                             {
-                                errors.imageError !== '' && 
+                                errors.imageError && 
                                 <Form.Text className='text-danger'>
                                     {errors.imageError}
                                 </Form.Text>

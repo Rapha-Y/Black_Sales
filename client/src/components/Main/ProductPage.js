@@ -14,6 +14,7 @@ const ProductPage = ({ isReady, isAuth }) => {
 
     async function getProduct(product_id, setInfoIsReady) {
         try {
+            //update product data
             const response = await fetch(
                 `http://localhost:5000/products/${product_id}`
             );
@@ -29,6 +30,7 @@ const ProductPage = ({ isReady, isAuth }) => {
 
     const addToCart = async () => {
         try {
+            //add product to active cart
             const myHeaders = new Headers();
             myHeaders.append('Content-Type', 'application/json');
             myHeaders.append('token', localStorage.token);
@@ -51,6 +53,7 @@ const ProductPage = ({ isReady, isAuth }) => {
 
     const buyProductNow = async () => {
         try {
+            //add product to new cart and order it
             const myHeaders = new Headers();
             myHeaders.append('Content-Type', 'application/json');
             myHeaders.append('token', localStorage.token);
@@ -76,6 +79,7 @@ const ProductPage = ({ isReady, isAuth }) => {
     }, [params.id, setInfoIsReady]);
 
     function getDate(dateString) {
+        //turn date to string
         const date = new Date(dateString);
 
         const month = date.getMonth() + 1;
