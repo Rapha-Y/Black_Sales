@@ -1,9 +1,9 @@
 import React, { Fragment, useState, useEffect } from 'react';
 import { Container, Form, Button, Row, Col } from 'react-bootstrap';
 
-import Header from './Shared/Header';
-import Footer from './Shared/Footer';
-import '../Body.css';
+import Header from '../Shared/Header';
+import Footer from '../Shared/Footer';
+import '../../Body.css';
 import './Profile.css';
 
 const Profile = ({ isReady, isAuth, setAuth }) => {

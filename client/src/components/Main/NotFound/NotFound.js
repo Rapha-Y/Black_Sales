@@ -1,9 +1,9 @@
 import React, { Fragment } from 'react';
 import { Container } from 'react-bootstrap';
 
-import Header from './Shared/Header';
-import Footer from './Shared/Footer';
-import '../Body.css';
+import Header from '../Shared/Header';
+import Footer from '../Shared/Footer';
+import '../../Body.css';
 import './NotFound.css';
 
 const NotFound = ({ isReady, isAuth }) => {

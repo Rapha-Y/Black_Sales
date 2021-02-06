@@ -4,17 +4,17 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-import Login from './components/Auth/Login';
-import Register from './components/Auth/Register';
+import Login from './components/Auth/Login/Login';
+import Register from './components/Auth/Register/Register';
 import AuthLoading from './components/Auth/AuthLoading';
 import Home from './components/Main/Home/Home';
-import ProductPage from './components/Main/ProductPage';
-import Profile from './components/Main/Profile';
-import Announce from './components/Main/Announce';
+import ProductPage from './components/Main/ProductPage/ProductPage';
+import Profile from './components/Main/Profile/Profile';
+import Announce from './components/Main/Announce/Announce';
 import Purchases from './components/Main/Purchases/Purchases';
 import Cart from './components/Main/Cart/Cart';
 import DefaultLoading from './components/Main/DefaultLoading';
-import NotFound from './components/Main/NotFound';
+import NotFound from './components/Main/NotFound/NotFound';
 
 toast.configure();
 

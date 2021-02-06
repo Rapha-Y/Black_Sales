@@ -2,9 +2,9 @@ import React, { Fragment, useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { Container, Image, Col, Row, Button } from 'react-bootstrap';
 
-import Header from './Shared/Header';
-import Footer from './Shared/Footer';
-import '../Body.css';
+import Header from '../Shared/Header';
+import Footer from '../Shared/Footer';
+import '../../Body.css';
 import './ProductPage.css';
 
 const ProductPage = ({ isReady, isAuth }) => {
