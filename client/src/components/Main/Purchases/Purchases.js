@@ -1,9 +1,10 @@
 import React, { Fragment, useState, useEffect } from 'react';
-import { Container, ListGroup } from 'react-bootstrap';
+import { Container } from 'react-bootstrap';
 
-import Header from './Shared/Header';
-import Footer from './Shared/Footer';
-import '../Body.css';
+import Header from '../Shared/Header';
+import Footer from '../Shared/Footer';
+import PurchasesItem from './PurchasesItem';
+import '../../Body.css';
 import './Purchases.css';
 
 const Purchases = ({ isReady, isAuth }) => {
@@ -12,6 +13,7 @@ const Purchases = ({ isReady, isAuth }) => {
 
     async function getPurchases() {
         try {
+            //get purchase list
             const response = await fetch(
                 'http://localhost:5000/purchases',
                 {
@@ -29,16 +31,6 @@ const Purchases = ({ isReady, isAuth }) => {
         } catch (error) {
             console.log(error.message);
         }
-    }
-
-    function getDate(dateString) {
-        const date = new Date(dateString);
-
-        const month = date.getMonth() + 1;
-        const day = date.getDate();
-        const year = date.getFullYear();
-
-        return `${month}/${day}/${year}`;
     }
 
     useEffect(() => {
@@ -62,26 +54,11 @@ const Purchases = ({ isReady, isAuth }) => {
                         ) :
                         (
                             purchases.map(purchase => 
-                                <div key={purchase.order_id} className='my-3'>
-                                    <span>Bought on {getDate(purchase.order_date)}</span>
-                                    <ListGroup className='mt-2'>
-                                        {
-                                            purchase.product_list.map(product => 
-                                                <ListGroup.Item 
-                                                    key={product.product_id} 
-                                                    className='orderCartItem'
-                                                >
-                                                    <div>
-                                                        {product.product_name}
-                                                    </div>
-                                                    <div>
-                                                        U${(product.product_price / 100).toFixed(2)}
-                                                    </div>
-                                                </ListGroup.Item>
-                                            )
-                                        }
-                                    </ListGroup>
-                                </div>    
+                                <PurchasesItem
+                                    key={purchase.order_id}
+                                    date={purchase.order_date}
+                                    product_list={purchase.product_list}
+                                />
                             )
                         )
                     }

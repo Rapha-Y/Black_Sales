@@ -11,7 +11,7 @@ import Home from './components/Main/Home/Home';
 import ProductPage from './components/Main/ProductPage';
 import Profile from './components/Main/Profile';
 import Announce from './components/Main/Announce';
-import Purchases from './components/Main/Purchases';
+import Purchases from './components/Main/Purchases/Purchases';
 import Cart from './components/Main/Cart/Cart';
 import DefaultLoading from './components/Main/DefaultLoading';
 import NotFound from './components/Main/NotFound';

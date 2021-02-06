@@ -9,8 +9,5 @@ Refactor code {
             Product
         }
     }
-    Cart {
-        Product
-    }
 }
 Write readme (actual last step)
