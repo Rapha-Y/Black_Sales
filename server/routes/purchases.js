@@ -2,10 +2,12 @@ const router = require('express').Router();
 const pool = require('../db');
 const authorization = require('../middleware/authorization');
 
+//get all orders
 router.get('/', authorization, async (req, res) => {
     try {
         const uid = req.user.id;
 
+        //get product-order list
         const productOrder = await pool.query(
             'SELECT orders.order_id, orders.order_date, cart_product.product_id, cart_product.product_name, cart_product.product_price FROM orders JOIN (SELECT cart.cart_id, cart_product.product_id, cart_product.product_name, cart_product.product_price FROM cart JOIN (SELECT cart_product.cart_id, product.product_id, product.product_name, product.product_price FROM cart_product JOIN product ON cart_product.product_id = product.product_id) AS cart_product ON cart.cart_id = cart_product.cart_id WHERE cart_status = $1 AND user_id = $2) AS cart_product ON orders.cart_id = cart_product.cart_id',
             ['inactive', uid]

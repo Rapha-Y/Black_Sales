@@ -3,6 +3,7 @@ const pool = require('../db');
 const authorization = require('../middleware/authorization');
 const url = require('url');
 
+//get recent products
 router.get('/', async (req, res) => {
     try {
         const queryObj = url.parse(req.url, true).query;
@@ -10,6 +11,7 @@ router.get('/', async (req, res) => {
 
         let products;
 
+        //get products based on filters
         if (category === 'All') {
             products = await pool.query(
                 'SELECT product_id, product_image, product_name, product_price FROM product WHERE LOWER(product_name) LIKE LOWER($1) ORDER BY product_date DESC LIMIT 100',
@@ -29,10 +31,12 @@ router.get('/', async (req, res) => {
     }
 });
 
+//get product by id
 router.get('/:id', async (req, res) => {
     try {
         const { id } = req.params;
 
+        //get product
         const product = await pool.query(
             'SELECT users.user_name, product.product_name, product.product_price, product.product_date, product.product_category, product.product_image FROM product JOIN users ON product.user_id = users.user_id WHERE product_id = $1',
             [id]
@@ -45,12 +49,14 @@ router.get('/:id', async (req, res) => {
     }
 });
 
+//create new product
 router.post('/', authorization, async (req, res) => {
     try {
         const { name, price, category, image } = req.body;
         const date = new Date();
         const uid = req.user.id;
 
+        //create product
         const newProduct = await pool.query(
             'INSERT INTO product (product_name, product_price, product_date, product_category, user_id, product_image) VALUES ($1, $2, $3, $4, $5, $6) RETURNING *',
             [name, price * 100, date, category, uid, image]

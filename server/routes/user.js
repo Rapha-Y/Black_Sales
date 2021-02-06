@@ -3,10 +3,12 @@ const pool = require('../db');
 const authorization = require('../middleware/authorization');
 const bcrypt = require('bcrypt');
 
+//get user info
 router.get('/', authorization, async (req, res) => {
     try {
         const uid = req.user.id;
 
+        //get info
         const user = await pool.query(
             'SELECT user_name, user_email FROM users WHERE user_id = $1',
             [uid]
@@ -19,11 +21,13 @@ router.get('/', authorization, async (req, res) => {
     }
 });
 
+//change user password
 router.put('/', authorization, async (req, res) => {
     try {
         const uid = req.user.id;
         const { currentPassword, newPassword } = req.body;
 
+        //password validation
         const user = await pool.query(
             'SELECT user_password FROM users WHERE user_id = $1',
             [uid]
@@ -39,6 +43,7 @@ router.put('/', authorization, async (req, res) => {
         const salt = await bcrypt.genSalt(saltRound);
         const bcryptPassword = await bcrypt.hash(newPassword, salt);
 
+        //password update
         const newPassUser = await pool.query(
             'UPDATE users SET user_password = $1 WHERE user_id = $2 RETURNING *',
             [bcryptPassword, uid]
